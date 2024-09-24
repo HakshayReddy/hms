@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (verifyCreds(role, username, password)) {
         // Redirect based on selected role
         switch (role) {
-          case "student":
+          case "Student":
             window.location.href = "./Comp/Hostel Student Dashboard/index.html"; // Update with the correct path
             break;
           case "staff":
