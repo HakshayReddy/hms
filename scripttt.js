@@ -77,7 +77,7 @@ async function verifyCreds(userId,password) {
       return false;
     }
   }
-function verify() {
+document.getElementById('btn-ver').addEventListener('click',function verify() {
     userId = document.getElementById("un").value;
     password = document.getElementById("psw").value;
     verifyCredentials(userId, password)
@@ -91,4 +91,4 @@ function verify() {
     .catch(error => {
       console.error('Error verifying credentials:', error);
     });
-}
+});
