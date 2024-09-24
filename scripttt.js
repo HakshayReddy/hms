@@ -57,12 +57,13 @@ function getUsers(peopleClass){
     });
 }
 async function verifyCreds(userId,password) {
+    var x;
     await db.collection('credentials').doc('22BCE9807').get()
     .then((doc) => {
         if (doc.exists) {
-          return doc.data();
+          x =  doc.data();
         } else {
-          return "not found";
+          x = "not found";
         }
       });
     // try {
@@ -85,7 +86,7 @@ async function verifyCreds(userId,password) {
     //   console.error('Error verifying credentials:', error);
     //   return false;
     // }
-    return true;
+    return x;
   }
 document.getElementById('btn-ver').addEventListener('click',function verify() {
     var userId = document.getElementById("un").value;
