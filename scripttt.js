@@ -57,7 +57,14 @@ function getUsers(peopleClass){
     });
 }
 async function verifyCreds(userId,password) {
-    console.log(await db.collection('credentials').doc('22BCE9807').get());
+    await db.collection('credentials').doc('22BCE9807').get()
+    .then((doc) => {
+        if (doc.exists) {
+          console.log('Document data:', doc.data());
+        } else {
+          console.log('No such document!');
+        }
+      })
     // try {
     //   const querySnapshot = await credentialsCollection.where('id', '==', userId).get();
   
