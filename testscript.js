@@ -8,7 +8,12 @@ const apiUrl = "https://0ey5491w6i.execute-api.eu-north-1.amazonaws.com/verifyCr
 const studentID = document.getElementById("un").value;
 function getStudentEmail(studentID) {
     // Make an API call to the backend to get the student's email
-    fetch(apiUrl + studentID)
+    fetch(apiUrl + studentID , {
+        method: 'GET',
+        mode: 'no-cors',  // Add no-cors mode to bypass CORS policy
+        headers: {
+            'Content-Type': 'application/json'  
+        }})
         .then(response => response.json())
         .then(data => {
             if (data.email) {
@@ -24,6 +29,3 @@ function getStudentEmail(studentID) {
             document.getElementById('emailOutput').innerText = 'Error: ' + error.message;
         });
 }
-
-// Call the function when needed (e.g., a button click event)
-getStudentEmail('12345');  // Replace with actual studentID
