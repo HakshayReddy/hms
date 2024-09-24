@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const password = document.getElementById("password").value;
 
     if (role && username && password) {
-      if (verifyCreds(role, username, password)) {
+      if (verifyCreds(role, username, password) == true) {
         // Redirect based on selected role
         switch (role) {
           case "student":
