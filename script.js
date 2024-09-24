@@ -1,36 +1,40 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 document.addEventListener("DOMContentLoaded", function () {
+  const firebaseConfig = {
+    apiKey: "AIzaSyBN8TRqIX8UVK5BRYpOduSIBgZJbPudpew",
+    authDomain: "hostel-management-system-9797.firebaseapp.com",
+    projectId: "hostel-management-system-9797",
+    storageBucket: "hostel-management-system-9797.appspot.com",
+    messagingSenderId: "724870161719",
+    appId: "1:724870161719:web:05068d6f1aa4351e6666b2",
+    measurementId: "G-FWZZJC3QER"
+    };
   const form = document.getElementById("login-form");
   const roleSelect = document.getElementById("role");
   const forgotPassword = document.getElementById("forgot-password");
   const forgotPasswordMessage = document.getElementById("forgot-password-message");
   const roleMessage = document.getElementById("role-message");
-  // Define passwords and usernames for each role
-  const credentials = {
-    student: {
-      password: "studentPass123", // Replace with your actual password
-      usernames: ["student1", "student2"], // Replace with actual usernames
-    },
-    staff: {
-      password: "staffPass123", // Replace with your actual password
-      usernames: ["staff1", "staff2"], // Replace with actual usernames
-    },
-    warden: {
-      password: "wardenPass123", // Replace with your actual password
-      usernames: ["warden1", "warden2"], // Replace with actual usernames
-    },
-    admin: {
-      password: "adminPass123", // Replace with your actual password
-      usernames: ["admin1", "admin2"], // Replace with actual usernames
-    },
-  };
-  function cal() {
-    console.log(x + "Hello");
-  }
-  const btn = document.getElementById("btn");
-  btn.addEventListener("click", function () {
-    cal();
-  });
-
+  async function verifyCreds(role, userId,password) {
+    var pass;
+    var roleDB;
+    await db.collection('credentials').doc(userId).get()
+    .then((doc) => {
+        if (doc.exists) {
+          pass =  doc.data().password;
+          roleDB =  doc.data().role;
+        } else {
+          return false;
+        }
+      });
+    return roleDB == role && pass==password;
+}
   form.addEventListener("submit", function (event) {
     users();
     event.preventDefault(); // Prevent form from submitting normally
@@ -40,12 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const password = document.getElementById("password").value;
 
     if (role && username && password) {
-      const roleCredentials = credentials[role];
-      if (
-        roleCredentials &&
-        password === roleCredentials.password &&
-        roleCredentials.usernames.includes(username)
-      ) {
+      if (verifyCreds(role, username, password)) {
         // Redirect based on selected role
         switch (role) {
           case "student":

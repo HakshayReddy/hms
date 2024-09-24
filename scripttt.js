@@ -56,38 +56,20 @@ function getUsers(peopleClass){
         console.error("Error getting documents: ", error);
     });
 }
-async function verifyCreds(userId,password) {
-    var x;
-    await db.collection('credentials').doc('22BCE9807').get()
+async function verifyCreds(role, userId,password) {
+    var pass;
+    var roleDB;
+    await db.collection('credentials').doc(userId).get()
     .then((doc) => {
         if (doc.exists) {
-          x =  doc.data().password;
+          pass =  doc.data().password;
+          roleDB =  doc.data().role;
         } else {
-          x = "not found";
+          return false;
         }
       });
-    // try {
-    //   const querySnapshot = await credentialsCollection.where('id', '==', userId).get();
-  
-    //   if (!querySnapshot.empty) {
-    //     const userDoc = querySnapshot.docs[0];
-    //     const storedPassword = userDoc.data().password;
-  
-    //     if (storedPassword === password) {
-    //       return true; // Credentials are valid
-    //     } else {
-    //         console.log(storedPassword);
-    //         return false; // Invalid password
-    //     }
-    //   } else {
-    //     return true; // User ID not found
-    //   }
-    // } catch (error) {
-    //   console.error('Error verifying credentials:', error);
-    //   return false;
-    // }
-    return x;
-  }
+    return roleDB == role && pass==password;
+}
 document.getElementById('btn-ver').addEventListener('click',function verify() {
     var userId = document.getElementById("un").value;
     var password = document.getElementById("psw").value;
