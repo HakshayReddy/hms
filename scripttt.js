@@ -64,7 +64,7 @@ async function verifyCreds(userId,password) {
         } else {
           console.log('No such document!');
         }
-      })
+      });
     // try {
     //   const querySnapshot = await credentialsCollection.where('id', '==', userId).get();
   
