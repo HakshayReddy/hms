@@ -80,7 +80,7 @@ async function verifyCreds(userId,password) {
 document.getElementById('btn-ver').addEventListener('click',function verify() {
     var userId = document.getElementById("un").value;
     var password = document.getElementById("psw").value;
-    verifyCredentials(userId, password)
+    verifyCreds(userId, password)
     .then(result => {
       if (result) {
         document.getElementById("h1").innerText = 'Valid';
