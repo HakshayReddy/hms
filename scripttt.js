@@ -57,27 +57,28 @@ function getUsers(peopleClass){
     });
 }
 async function verifyCreds(userId,password) {
-    console.log(db.collection('credentials').doc('22BCE9807').get());
-    try {
-      const querySnapshot = await credentialsCollection.where('id', '==', userId).get();
+    console.log(await db.collection('credentials').doc('22BCE9807').get());
+    // try {
+    //   const querySnapshot = await credentialsCollection.where('id', '==', userId).get();
   
-      if (!querySnapshot.empty) {
-        const userDoc = querySnapshot.docs[0];
-        const storedPassword = userDoc.data().password;
+    //   if (!querySnapshot.empty) {
+    //     const userDoc = querySnapshot.docs[0];
+    //     const storedPassword = userDoc.data().password;
   
-        if (storedPassword === password) {
-          return true; // Credentials are valid
-        } else {
-            console.log(storedPassword);
-            return false; // Invalid password
-        }
-      } else {
-        return true; // User ID not found
-      }
-    } catch (error) {
-      console.error('Error verifying credentials:', error);
-      return false;
-    }
+    //     if (storedPassword === password) {
+    //       return true; // Credentials are valid
+    //     } else {
+    //         console.log(storedPassword);
+    //         return false; // Invalid password
+    //     }
+    //   } else {
+    //     return true; // User ID not found
+    //   }
+    // } catch (error) {
+    //   console.error('Error verifying credentials:', error);
+    //   return false;
+    // }
+    return true;
   }
 document.getElementById('btn-ver').addEventListener('click',function verify() {
     var userId = document.getElementById("un").value;
