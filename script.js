@@ -39,7 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(role);
     console.log(pass === password);
     console.log(roleDB ===role );
-    return( roleDB === role && pass===password);
+    console.log((roleDB === role) && (pass===password));
+    return( (roleDB === role) && (pass===password));
 }
   form.addEventListener("submit", async function (event) {
     event.preventDefault(); // Prevent form from submitting normally
