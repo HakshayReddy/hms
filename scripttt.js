@@ -57,6 +57,7 @@ function getUsers(peopleClass){
     });
 }
 async function verifyCreds(userId,password) {
+    const credentialsCollection = db.collection('credentials');
     try {
       const querySnapshot = await credentialsCollection.where('id', '==', userId).get();
   
