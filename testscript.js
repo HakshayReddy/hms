@@ -6,10 +6,10 @@ btn.addEventListener("click", function () {
 });
 
 // Replace with your actual API Gateway URL
-const apiUrl = "https://0ey5491w6i.execute-api.eu-north-1.amazonaws.com/$default/verifyCreds/";
+const apiUrl = "https://0ey5491w6i.execute-api.eu-north-1.amazonaws.com/verifyCreds/";
 function getStudentEmail(studentID) {
     // Make an API call to the backend to get the student's email
-    fetch(apiUrl + studentID , {
+    fetch(apiUrl , {
         method: 'GET',
         mode: 'no-cors',  // Add no-cors mode to bypass CORS policy
         headers: {
