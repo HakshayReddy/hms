@@ -57,7 +57,7 @@ function getUsers(peopleClass){
     });
 }
 async function verifyCreds(userId,password) {
-    const credentialsCollection = db.collection('credentials');
+    console.log(db.collection('credentials').doc('22BCE9807').get());
     try {
       const querySnapshot = await credentialsCollection.where('id', '==', userId).get();
   
@@ -68,10 +68,11 @@ async function verifyCreds(userId,password) {
         if (storedPassword === password) {
           return true; // Credentials are valid
         } else {
-          return false; // Invalid password
+            console.log(storedPassword);
+            return false; // Invalid password
         }
       } else {
-        return false; // User ID not found
+        return true; // User ID not found
       }
     } catch (error) {
       console.error('Error verifying credentials:', error);
