@@ -34,8 +34,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     console.log(pass);
+    console.log(password);
     console.log(roleDB);
     console.log(role);
+    console.log(pass === password);
+    console.log(roleDB ===role );
     return( roleDB === role && pass===password);
 }
   form.addEventListener("submit", async function (event) {
