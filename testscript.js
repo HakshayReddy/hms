@@ -6,7 +6,7 @@ btn.addEventListener("click", function () {
 });
 
 // Replace with your actual API Gateway URL
-const apiUrl = "https://0ey5491w6i.execute-api.eu-north-1.amazonaws.com/verifyCreds/";
+const apiUrl = "https://0ey5491w6i.execute-api.eu-north-1.amazonaws.com/verifyCreds";
 function getStudentEmail(studentID) {
     // Make an API call to the backend to get the student's email
     fetch(apiUrl , {
@@ -26,7 +26,6 @@ function getStudentEmail(studentID) {
             }
         })
         .catch(error => {
-            console.error('Error:', error);
             document.getElementById('emailOutput').innerText = 'Error: ' + error.message;
         });
 }
