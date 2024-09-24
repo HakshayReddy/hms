@@ -1,78 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>HOSTEL MANAGEMENT SYSTEM</title>
-</head>
-<body>
-    <h1 id >HOSTING, DATABASE and VERSION CONTROL TEST</h1>
-    <h1 id = 'h1' ></h1>
-    <ul id="usersList"></ul>
-    <button id = "btn" >Click me</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hostel Dashboard Login</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="form-wrapper">
+        <h2>Hostel Dashboard Login</h2>
+        <form id="login-form" class="form">
+          <div class="flex-column">
+            <label for="role">Select Role</label>
+            <div class="inputForm">
+              <i class="fa-solid fa-user-tie" id="role-icon"></i>
+              <select name="role" id="role" class="input" required>
+                <option value="" disabled selected>Select your role</option>
+                <option value="student" data-icon="fa-solid fa-user-graduate">
+                  Student
+                </option>
+                <option value="staff" data-icon="fa-solid fa-users">
+                  Staff
+                </option>
+                <option value="warden" data-icon="fa-solid fa-person-cane">
+                  Warden
+                </option>
+                <option value="admin" data-icon="fa-solid fa-user-shield">
+                  Admin
+                </option>
+              </select>
+            </div>
+            <p id="role-message" class="role-message">
+              Please select your role
+            </p>
+          </div>
+          <div class="flex-column">
+            <label for="username">Username</label>
+            <div class="inputForm">
+              <i class="fa-solid fa-user"></i>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                class="input"
+                placeholder="Enter your username"
+                required
+              />
+            </div>
+          </div>
+          <div class="flex-column">
+            <label for="password">Password</label>
+            <div class="inputForm">
+              <i class="fa-solid fa-lock"></i>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="input"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+          </div>
+          <button type="submit" id="login-btn" class="button-submit">
+            Login
+          </button>
+          <p id="forgot-password" class="forgot-password">Forgot Password?</p>
+          <p id="forgot-password-message" class="forgot-password-message"></p>
+          <p id="traffic-counter">
+            Total Visits: <span class="traffic-number">12345</span>
+          </p>
+        </form>
+      </div>
+    </div>
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    
-</body>
-<script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-    apiKey: "AIzaSyBN8TRqIX8UVK5BRYpOduSIBgZJbPudpew",
-    authDomain: "hostel-management-system-9797.firebaseapp.com",
-    projectId: "hostel-management-system-9797",
-    storageBucket: "hostel-management-system-9797.appspot.com",
-    messagingSenderId: "724870161719",
-    appId: "1:724870161719:web:05068d6f1aa4351e6666b2",
-    measurementId: "G-FWZZJC3QER"
-    };
-    
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    document.getElementById('btn').addEventListener('click', function(){
-        var peopleClass = document.getElementById('h1').textContent.toLowerCase();
-        if(peopleClass==="") {
-            document.getElementById('h1').textContent = "Students";
-            peopleClass = "students";
-        }
-        if (peopleClass=="staff") {
-            console.log("if");
-            getUsers('students');
-            document.getElementById('h1').textContent = "Students";
-            return;    
-        } 
-        if(peopleClass=="students") {
-            console.log("else if");
-            getUsers('staff');  
-            document.getElementById('h1').textContent = "Staff";
-            return;
-        }
-    });
-
-    // Get a reference to the 'users' collection
-    function getUsers(peopleClass){
-        const usersRef = db.collection(peopleClass);
-        // Get all documents in the 'users' collection
-        usersRef.get()
-        .then((snapshot) => {
-            const usersList = document.getElementById('usersList'); // Get the list element
-            usersList.innerHTML = ''; // Clear the list before appending new items
-            snapshot.docs.forEach((doc) => {
-            const user = doc.data();
-            const listItem = document.createElement('li'); // Create a list item
-            listItem.textContent = `${doc.id} - ${user.name}`; // Set the text content
-            usersList.appendChild(listItem); // Add the list item to the list
-            });
-        })
-        .catch((error) => {
-            console.error("Error getting documents: ", error);
-        });
-        window.getUsers = getUsers;
- }
-</script>
-
+    <script src="script.js"></script>
+  </body>
 </html>
