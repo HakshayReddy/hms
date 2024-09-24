@@ -1,11 +1,12 @@
 const btn = document.getElementById("btn-ver");
 btn.addEventListener("click", function () {
     console.log("Hello");
+    const studentID = document.getElementById("un").value;
+    getStudentEmail(studentID);
 });
 
 // Replace with your actual API Gateway URL
 const apiUrl = "https://0ey5491w6i.execute-api.eu-north-1.amazonaws.com/verifyCreds/";
-const studentID = document.getElementById("un").value;
 function getStudentEmail(studentID) {
     // Make an API call to the backend to get the student's email
     fetch(apiUrl + studentID , {
