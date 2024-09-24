@@ -78,8 +78,8 @@ async function verifyCreds(userId,password) {
     }
   }
 document.getElementById('btn-ver').addEventListener('click',function verify() {
-    userId = document.getElementById("un").value;
-    password = document.getElementById("psw").value;
+    var userId = document.getElementById("un").value;
+    var password = document.getElementById("psw").value;
     verifyCredentials(userId, password)
     .then(result => {
       if (result) {
