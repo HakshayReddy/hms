@@ -16,6 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
     appId: "1:724870161719:web:05068d6f1aa4351e6666b2",
     measurementId: "G-FWZZJC3QER"
     };
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
   const form = document.getElementById("login-form");
   const roleSelect = document.getElementById("role");
   const forgotPassword = document.getElementById("forgot-password");
