@@ -31,10 +31,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (doc.exists) {
           pass =  doc.data().password;
           roleDB =  doc.data().role;
-        } else {
-          return false;
         }
       });
+    console.log(pass);
+    console.log(roleDB);
     return roleDB == role && pass==password;
 }
   form.addEventListener("submit", async function (event) {
