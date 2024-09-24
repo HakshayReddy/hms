@@ -61,7 +61,7 @@ async function verifyCreds(userId,password) {
     await db.collection('credentials').doc('22BCE9807').get()
     .then((doc) => {
         if (doc.exists) {
-          x =  doc.data();
+          x =  doc.data().password;
         } else {
           x = "not found";
         }
