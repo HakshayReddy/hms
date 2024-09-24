@@ -35,8 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     return roleDB == role && pass==password;
 }
-  form.addEventListener("submit", function (event) {
-    users();
+  form.addEventListener("submit", async function (event) {
     event.preventDefault(); // Prevent form from submitting normally
 
     const role = roleSelect.value;
