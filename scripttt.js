@@ -1,6 +1,3 @@
-// const btn = document.getElementById('btn1').addEventListener('click',function(e) {
-//     console.log(scope.displayDetails.A);
-// });
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
@@ -57,5 +54,41 @@ function getUsers(peopleClass){
     })
     .catch((error) => {
         console.error("Error getting documents: ", error);
+    });
+}
+async function verifyCreds(userId,password) {
+    try {
+      const querySnapshot = await credentialsCollection.where('id', '==', userId).get();
+  
+      if (!querySnapshot.empty) {
+        const userDoc = querySnapshot.docs[0];
+        const storedPassword = userDoc.data().password;
+  
+        if (storedPassword === password) {
+          return true; // Credentials are valid
+        } else {
+          return false; // Invalid password
+        }
+      } else {
+        return false; // User ID not found
+      }
+    } catch (error) {
+      console.error('Error verifying credentials:', error);
+      return false;
+    }
+  }
+function verify() {
+    userId = document.getElementById("un").value;
+    password = document.getElementById("psw").value;
+    verifyCredentials(userId, password)
+    .then(result => {
+      if (result) {
+        document.getElementById("h1").innerText = 'Valid';
+      } else {
+        document.getElementById("h1").innerText = 'Not valid';
+      }
+    })
+    .catch(error => {
+      console.error('Error verifying credentials:', error);
     });
 }
