@@ -60,9 +60,9 @@ async function verifyCreds(userId,password) {
     await db.collection('credentials').doc('22BCE9807').get()
     .then((doc) => {
         if (doc.exists) {
-          console.log('Document data:', doc.data());
+          return doc.data();
         } else {
-          console.log('No such document!');
+          return "not found";
         }
       });
     // try {
@@ -93,9 +93,9 @@ document.getElementById('btn-ver').addEventListener('click',function verify() {
     verifyCreds(userId, password)
     .then(result => {
       if (result) {
-        document.getElementById("h1").innerText = 'Valid';
+        document.getElementById("h1").innerText = result;
       } else {
-        document.getElementById("h1").innerText = 'Not valid';
+        document.getElementById("h1").innerText = result;
       }
     })
     .catch(error => {
