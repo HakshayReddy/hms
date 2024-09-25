@@ -5,19 +5,18 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebas
 // https://firebase.google.com/docs/web/setup#available-libraries
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
+const firebaseConfig = {
+  apiKey: "AIzaSyBN8TRqIX8UVK5BRYpOduSIBgZJbPudpew",
+  authDomain: "hostel-management-system-9797.firebaseapp.com",
+  projectId: "hostel-management-system-9797",
+  storageBucket: "hostel-management-system-9797.appspot.com",
+  messagingSenderId: "724870161719",
+  appId: "1:724870161719:web:05068d6f1aa4351e6666b2",
+  measurementId: "G-FWZZJC3QER"
+  };
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 document.addEventListener("DOMContentLoaded", function () {
-  const firebaseConfig = {
-    apiKey: "AIzaSyBN8TRqIX8UVK5BRYpOduSIBgZJbPudpew",
-    authDomain: "hostel-management-system-9797.firebaseapp.com",
-    projectId: "hostel-management-system-9797",
-    storageBucket: "hostel-management-system-9797.appspot.com",
-    messagingSenderId: "724870161719",
-    appId: "1:724870161719:web:05068d6f1aa4351e6666b2",
-    measurementId: "G-FWZZJC3QER"
-    };
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
   const form = document.getElementById("login-form");
   const roleSelect = document.getElementById("role");
   const forgotPassword = document.getElementById("forgot-password");
@@ -33,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
           roleDB =  doc.data().role;
         }
       });
-    console.log((roleDB == role) && (pass == password));
     return( (roleDB == role) && (pass == password));
 }
   form.addEventListener("submit", async function (event) {
@@ -46,6 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (role && username && password) {
       if (await verifyCreds(role, username, password) == true) {
         // Redirect based on selected role
+        window.localStorage.setItem("username", username); // Store the username in local storage for persistence
+       // Log the login event with the username
         switch (role) {
           case "student":
             window.location.href = "./Comp/Hostel Student Dashboard/index.html"; // Update with the correct path

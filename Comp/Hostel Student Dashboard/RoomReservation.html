@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Reservation</title>
+    <link rel="stylesheet" href="room.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h1>Room Reservation</h1>
+        </header>
+        <nav>
+            <ul class="navbar">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="payments.html">Payments</a></li>
+                <li><a href="complaints.html">Complaints</a></li>
+                <li><a href="LeaveApplication.html">Apply Leave</a></li>
+                <li><a href="RoomReservation.html" class="active">Room Reservation</a></li>
+            </ul>
+        </nav>
+        <!-- Floor Selection -->
+        <div class="floor-selection">
+            <label for="floorSelect">Select Floor:</label>
+            <select id="floorSelect">
+                <option value="1">Ground Floor</option>
+                <option value="2">First Floor</option>
+                <option value="3">Second Floor</option>
+                <option value="4">Third Floor</option>
+                <option value="5">Fourth Floor</option>
+                <option value="6">Fifth Floor</option>
+            </select>
+            <select id="roomtype">
+                <option value="1">2 Bed NAC</option>
+                <option value="2">2 Bed AC</option>
+                <option value="3">4 Bed NAC</option>
+                <option value="4">4 Bed AC</option>
+                <option value="5">5 Bed Apartment NAC</option>
+                <option value="6">5 Bed Apartment AC</option>
+                <option value="7">12 Dorms NAC</option>
+            </select>
+            <select id="hostelblock">
+                <option value="1">MH1</option>
+            </select>
+        </div>
+
+        <!-- Room Map -->
+        <div class="room-map"></div>
+
+        <!-- Room Information -->
+        <div class="room-info">
+            <h2>Room Legend</h2>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="room available"></div>
+                    <span>Available</span>
+                </div>
+                <div class="legend-item">
+                    <div class="room occupied"></div>
+                    <span>Occupied</span>
+                </div>
+                <div class="legend-item">
+                    <div class="room selected"></div>
+                    <span id="sel">Selected</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Management Information -->
+        <div class="management-info">
+            <h2>Room Details</h2>
+            <form id="roomForm">
+                <label for="roomNumber">Room Number:</label>
+                <input type="text" id="roomNumber" placeholder="Room number" readonly>
+
+                <label for="status">Status:</label>
+                <input type="text" id="status" placeholder="Status" readonly>
+                    <div class="details" id="details">
+
+                    </div>
+                <button type="submit" id="saveButton">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="room.js"></script>
+    <script src="test.js"></script>
+</body>
+</html>

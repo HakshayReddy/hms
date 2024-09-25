@@ -32,3 +32,19 @@ window.onclick = function(event) {
 trackerButton.addEventListener('click', () => {
     trackerSection.style.display = trackerSection.style.display === 'block' ? 'none' : 'block';
 });
+// data =[["Maintenance","the not nice","over"],["Room Cleaning","the not nice","not over"]];
+// trackerButton.addEventListener('click', () => {
+//     var option=document.getElementById('complaint-type').value;
+//     for(let i=0;i<data.length;i++)
+//     {
+//         if(data[i][0]==option)
+//         {
+//             // document.getElementById("Maintenance").value=data[i][0];
+//             // document.getElementById("discription").value=data[i][1];
+//             // document.getElementById("progress").value=data[i][2];
+//             // document.getElementById("trackerSection").innerHTML+=document.getElementById(addon);
+//             trackerSection.style.display = trackerSection.style.display === 'block' ? 'none' : 'block';
+//         }
+
+//     }
+// });

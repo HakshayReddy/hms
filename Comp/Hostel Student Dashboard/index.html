@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="./Components/Styling/style.css">
-    <link rel="stylesheet" href="./Components/Styling/loader.css">
 </head>
 <body>
     <!-- Loader HTML -->
-    <div class="loader-wrapper">
+    <!-- <div class="loader-wrapper">
         <div class="card">
             <div class="loader">
                 <p>loading</p>
@@ -24,7 +23,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Main Content -->
     <header>
@@ -32,25 +31,27 @@
     </header>
     <nav>
         <ul class="navbar">
-            <li><a href="index.html" class="active">Dashboard</a></li>
+            <li><a href="index.html"  class="active">Dashboard</a></li>
             <li><a href="payments.html">Payments</a></li>
             <li><a href="complaints.html">Complaints</a></li>
+            <li><a href="LeaveApplication.html">Apply Leave</a></li>
+            <li><a href="RoomReservation.html">Room Reservation</a></li>
         </ul>
     </nav>
     <section id="dashboard">
         <div class="section profile-summary">
-            <a href="edit-profile.html" class="edit-profile-btn">Edit Profile</a>
+            <a href="edit-profile.html" id="edit" class="edit-profile-btn"  >Edit Profile</a>
             <a href="../../index.html" class="logout-btn">Logout</a> <!-- Added Logout Button -->
             <h2><i class="fa-solid fa-user"></i><span class="shiny-text">Profile Details</span></h2>
             <div class="profile-pic">
-                <img src="./Components/Images/user.jpeg" alt="Student Picture">
+                <img src="./Components/Images/user.jpg" alt="Student Picture">
             </div>
-            <p><strong>Name:</strong> Ashish Raj</p>
+            <!-- <p><strong>Name:</strong> Ashish Raj</p>
             <p><strong>Father's Name:</strong> Rajesh Kumar Verma</p>
             <p><strong>Room Allotted:</strong> 516</p>
             <p><strong>Admission Date:</strong> 2024-01-15</p>
             <p><strong>Email:</strong> ashishraulin@gmail.com</p>
-            <p><strong>Phone Number:</strong> 1234567890</p>
+            <p><strong>Phone Number:</strong> 1234567890</p> -->
         </div>
         
 
@@ -96,6 +97,5 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="./Components/Scripting/loader.js"></script>
 </body>
 </html>
