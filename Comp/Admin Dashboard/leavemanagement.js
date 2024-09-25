@@ -1,12 +1,66 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Handle Check-In Form Submission
-    document.getElementById('checkInForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const studentName = document.getElementById('studentNameIn').value;
-        const roomNumber = document.getElementById('roomNumberIn').value;
-        addRecord('Check-In', studentName, roomNumber);
-        this.reset();
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+import { getFirestore, doc, setDoc, getDoc, updateDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
+
+
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBN8TRqIX8UVK5BRYpOduSIBgZJbPudpew",
+  authDomain: "hostel-management-system-9797.firebaseapp.com",
+  projectId: "hostel-management-system-9797",
+  storageBucket: "hostel-management-system-9797.appspot.com",
+  messagingSenderId: "724870161719",
+  appId: "1:724870161719:web:05068d6f1aa4351e6666b2",
+  measurementId: "G-FWZZJC3QER"
+  };
+const app = initializeApp(firebaseConfig); // Modular SDK
+const db = getFirestore(app);
+document.addEventListener('DOMContentLoaded',async () => {
+    const tBody = document.querySelector('#requests tbody');
+    refreshReqs();
+
+    async function refreshReqs() {
+        while (tBody.rows.length > 0) {
+            tBody.deleteRow(tBody.rows.length - 1); // Remove the last row
+        }
+        const querySnapshot = await getDocs(collection(db, "leaves"));
+        querySnapshot.forEach((doc) => {
+            if(doc.data().wardenA == "Not Approved") {
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${doc.id}</td>
+                    <td>${doc.data().regno}</td>
+                    <td>${getStdName(doc.data().regno)}</td>
+                    <td>${doc.data().purpose}</td>
+                    <td>${doc.data().fromdate}</td>
+                    <td><a href="#" class="approve-link" data-id="${doc.id}">Approve</a></td>
+                `;
+                tBody.appendChild(newRow);
+            }
+            
+          });
+    }
+    tBody.addEventListener('click', function(event) {
+        if (event.target.classList.contains('approve-link')) {
+            event.preventDefault(); // Prevent the default anchor behavior
+            const leaveId = event.target.getAttribute('data-id');
+            approve(leaveId);
+            refreshReqs();
+        }
     });
+    async function approve(leave) {
+        await updateDoc(doc(db, "leaves", leave), { wardenA: "Approved"});
+    }
+    function getStdName(user) {
+        var name = "name";
+
+
+        return name;
+    }
 
     // Handle Check-Out Form Submission
     document.getElementById('checkOutForm').addEventListener('submit', function(event) {

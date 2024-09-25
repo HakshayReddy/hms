@@ -35,16 +35,22 @@
 
         <!-- Check-In Form -->
         <div class="form-section">
-            <h2>Check-In</h2>
-            <form id="checkInForm">
-                <label for="studentNameIn">Student Name:</label>
-                <input type="text" id="studentNameIn" required>
-
-                <label for="roomNumberIn">Room Number:</label>
-                <input type="text" id="roomNumberIn" required>
-
-                <button type="submit">Submit Check-In</button>
-            </form>
+            <h2>Leave Requests</h2>
+            <table id="requests">
+                <thead>
+                    <tr>
+                        <th>Regn. Number</th>
+                        <th>Reg. No.</th>
+                        <th>Name</th>
+                        <th>Purpose</th>
+                        <th>Leave Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Records will be populated here -->
+                </tbody>
+            </table>
         </div>
 
         <!-- Check-Out Form -->
@@ -91,6 +97,6 @@
         </div>
     </div>
 
-    <script src="leavemanagement.js"></script>
+    <script type = "module" src="leavemanagement.js"></script>
 </body>
 </html>
