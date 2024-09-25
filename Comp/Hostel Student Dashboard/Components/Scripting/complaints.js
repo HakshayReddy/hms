@@ -1,7 +1,24 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+import { getFirestore, doc, addDoc, setDoc, getDoc, updateDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
 
 
 
-
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBN8TRqIX8UVK5BRYpOduSIBgZJbPudpew",
+  authDomain: "hostel-management-system-9797.firebaseapp.com",
+  projectId: "hostel-management-system-9797",
+  storageBucket: "hostel-management-system-9797.appspot.com",
+  messagingSenderId: "724870161719",
+  appId: "1:724870161719:web:05068d6f1aa4351e6666b2",
+  measurementId: "G-FWZZJC3QER"
+  };
+const app = initializeApp(firebaseConfig); // Modular SDK
+const db = getFirestore(app);
 
 // Reference to the modal element for displaying success messages
 var modal = document.getElementById('successModal');
@@ -17,9 +34,14 @@ var trackerSection = document.getElementById('trackerSection');
 // Handle form submission: Show the success modal and reset the form
 form.addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the form from submitting in the default manner
+    addComp(document.getElementById("complaint-type").value,document.getElementById("complaint-description").value,"pending");
     modal.style.display = 'block'; // Display the success modal
     form.reset(); // Clear the form fields after submission
 });
+
+async function addComp(Ctype, desc,Cstatus) {
+    await addDoc(collection(db, "complaints"), {type:Ctype, description: desc, reg : window.localStorage.getItem("username"),status : Cstatus });
+}
 
 // Close the modal when the close button is clicked
 span.onclick = function() {
@@ -33,38 +55,18 @@ window.onclick = function(event) {
     }
 }
 
-// Toggle the display of the tracker section when the tracker button is clicked
-// trackerButton.addEventListener('click', () => {
-//     trackerSection.style.display = trackerSection.style.display === 'block' ? 'none' : 'block';
-// });
-data =[["maintenance","the not nice","in-progress"],["Room Cleaning","the not nice","resolved"],["mg","the not nice","pending"]];
-trackerButton.addEventListener('click', () => {
-    var option=document.getElementById('complaint-type').value;
-    for(let i=0;i<data.length;i++)
-    {
-        if(data[i][2]=="in-progress")
-        {
-            trackerSection.innerHTML+=`<div class="complaint-item">
-            <h3 id="Maintenance">${data[i][0]}</h3>
-            <p><strong>Description:</strong> ${data[i][1]}</p>
-            <p><strong>Status:</strong> <span class="status-in-progress">${data[i][2]}</span></p>
-        </div>`;
-        }
-        else if(data[i][2]=="resolved")
-        {
-            trackerSection.innerHTML+=`<div class="complaint-item">
-            <h3 id="Maintenance">${option}</h3>
-            <p><strong>Description:</strong> ${data[0][1]}</p>
-            <p><strong>Status:</strong> <span class="status-resolved">${data[i][2]}</span></p>
-        </div>`;
-        }
-        else if(data[i][2]=="pending"){
-            trackerSection.innerHTML+=`<div class="complaint-item">
-            <h3 id="Maintenance">${option}</h3>
-            <p><strong>Description:</strong> ${data[0][1]}</p>
-            <p><strong>Status:</strong> <span class="status-pending">${data[i][2]}</span></p>
-        </div>`;
-        }
+trackerButton.addEventListener('click', async function(){
+    console.log("Hello ");
+        const querySnapshot = await getDocs(collection(db, "complaints"));
+        querySnapshot.forEach(async (doc) => {
+            if(doc.data().reg == window.localStorage.getItem("username")) {
+                trackerSection.innerHTML+=`<div class="complaint-item">
+                <h3 id="Maintenance">${doc.data().type}</h3>
+                <p><strong>Description:</strong> ${doc.data().description}</p>
+                <p><strong>Status:</strong> <span class="status-${doc.data().status}">${doc.data().status}</span></p>
+                </div>`;
+            }
+            
+          });
         trackerSection.style.display = trackerSection.style.display === 'block' ? 'none' : 'block';
-    }
 });
