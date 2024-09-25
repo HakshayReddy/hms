@@ -75,7 +75,7 @@ async function loadData()
                     <p><strong>From date: </strong>${doc.data().fromdate}<strong>From time: </strong>${doc.data().fromtime}</p>
                     <p><strong>To date: </strong>${doc.data().todate} <strong>To time: </strong>${doc.data().totime}</p>
                     <button class="download" id="download">Download Form</button>
-                    <p><strong>Status:</strong><strong> Mentor : </strong><span class="status-${doc.data().mentorA}">${doc.data().mentorA}</span><strong> Warden : </strong><span class="status-${doc.data().wardenA}">${doc.data().wardenA}</span></p>
+                    <p><strong>Status:<span class="status-${doc.data().wardenA}">&nbsp${doc.data().wardenA}</span></p>
                 </div>
             </div>`;
                 }
@@ -93,7 +93,6 @@ document.getElementById('profile-form').onsubmit =async function(event) {
         fromtime:document.getElementById("from-time").value, 
         todate:document.getElementById("to-date").value, 
         totime:document.getElementById("to-time").value, 
-        mentorA: "Not-Approved", 
         wardenA: "Not-Approved", 
         purpose: document.getElementById("purpose").value,
     });
