@@ -1,6 +1,6 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+import { getFirestore, doc, setDoc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
 
 
@@ -18,8 +18,8 @@ const firebaseConfig = {
   appId: "1:724870161719:web:05068d6f1aa4351e6666b2",
   measurementId: "G-FWZZJC3QER"
   };
-const app = firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+const app = initializeApp(firebaseConfig); // Modular SDK
+const db = getFirestore(app);
 const textArea = document.getElementById("name");
 textArea.addEventListener('input', function() {
   this.style.height = 'auto'; // Reset height to auto
@@ -46,21 +46,28 @@ document.getElementById("edit-email").addEventListener("click", function () {
     }
 });
 var user = window.localStorage.getItem('username');
-const docRef =  await db.collection('students').doc(user);
+const docRef = doc(db, "students", user);
 loadData();
 async function loadData()
 { 
-    await docRef.get()
-    .then((doc) => {
-        document.getElementById("name").value=doc.data().name;
-        document.getElementById("student-id").value=user;
-        document.getElementById("father-name").value=doc.data().father;
-        document.getElementById("address").value=doc.data().address;
-        document.getElementById("room").value=doc.data().room;
-        document.getElementById("admission-date").value=doc.data().admissiondate;
-        document.getElementById("email").value=doc.data().email;
-        document.getElementById("phone").value=doc.data().phnNum; 
-    });     
+    try {
+        const docSnap = await getDoc(docRef); // Use getDoc for fetching data
+        if (docSnap.exists()) {
+            // Set form field values based on document data
+            document.getElementById("name").value = docSnap.data().name;
+            document.getElementById("student-id").value = user;
+            document.getElementById("father-name").value = docSnap.data().father;
+            document.getElementById("address").value = docSnap.data().address;
+            document.getElementById("room").value = docSnap.data().room;
+            document.getElementById("admission-date").value = docSnap.data().admissiondate;
+            document.getElementById("email").value = docSnap.data().email;
+            document.getElementById("phone").value = docSnap.data().phnNum;
+        } else {
+            console.log("No such document!");
+        }
+    } catch (error) {
+        console.error("Error getting document:", error);
+    }    
 }
 async function fetchUserData(userId) {
     const docRef = doc(db, "students", userId); // Assuming user data is stored in "users" collection
@@ -74,6 +81,10 @@ async function fetchUserData(userId) {
     }
   }
 document.getElementById("confirm-btn").addEventListener("click", async function() {
+    const docRef = doc(db, "students", user);  // Get DocumentReference
+    await updateDoc(docRef, { email: document.getElementById("email").value }); 
+    await updateDoc(docRef, { phnNum: document.getElementById("phone").value }); 
+
     document.getElementById('popup').classList.remove('show'); // Hide the confirmation popup
     document.getElementById('success-message').classList.add('show'); // Display the success message
     setTimeout(() => {
