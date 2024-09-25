@@ -78,6 +78,11 @@ body {
   flex: 1;
   overflow-y: auto;
 }
+
+.hidden {
+  display: none;
+}
+
 header {
   text-align: center;
   margin-bottom: 40px;
@@ -92,19 +97,7 @@ header h1 {
   padding-bottom: 10px;
 }
 
-
-header {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-header h1 {
-  font-size: 32px;
-  color: #343a40;
-  font-weight: 700;
-  margin: 0;
-}
-
+/* Floor Selection */
 .floor-selection {
   margin: 20px auto;
   text-align: center;
@@ -123,6 +116,7 @@ header h1 {
   font-size: 16px;
 }
 
+/* Room Map */
 .room-map {
   display: grid;
   grid-template-columns: repeat(3, 70px);
@@ -163,17 +157,25 @@ header h1 {
   white-space: nowrap; /* Prevents text from wrapping */
 }
 
-
 .room.available {
   background-color: #28a745;
+  border: 1px solid black;
 }
 
 .room.selected {
   background-color: #007bff;
+  border: 1px solid black;
 }
 
 .room.occupied {
   background-color: #dc3545;
+  border: 1px solid black;
+  cursor: not-allowed;
+}
+
+.room.under-maintenance {
+  background-color: grey;
+  border: 1px solid black;
   cursor: not-allowed;
 }
 
@@ -181,11 +183,13 @@ header h1 {
   transform: scale(1.1);
 }
 
+/* Room Info */
 .room-info {
   margin-top: 30px;
   text-align: center;
 }
 
+/* Legend */
 .legend {
   display: flex;
   justify-content: center;
@@ -203,6 +207,7 @@ header h1 {
   color: #495057;
 }
 
+/* Management Info */
 .management-info {
   margin-top: 30px;
   padding: 20px;
@@ -249,6 +254,31 @@ header h1 {
   background-color: #218838;
   transform: scale(1.05);
 }
+
+/* New Buttons for Room Details */
+.details-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.details-buttons button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.details-buttons button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
 /* Notification Popup Styles */
 .notification-popup {
   position: fixed;
@@ -270,5 +300,3 @@ header h1 {
   opacity: 1;
   transform: translateY(0);
 }
-
-

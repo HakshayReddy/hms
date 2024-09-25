@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hostel Room Management</title>
     <link rel="stylesheet" href="hostel.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
@@ -15,16 +14,17 @@
             <i class="fas fa-user-shield"></i> Hostel Admin
         </div>
         <ul class="sidebar-menu">
-            <li class="sidebar-item"><a href="index.html" class="sidebar-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li class="sidebar-item active"><a href="index.html" class="sidebar-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
             <li class="sidebar-item"><a href="managestudents.html" class="sidebar-link"><i class="fas fa-user-graduate"></i> Manage Students</a></li>
             <li class="sidebar-item"><a href="manage-staff.html" class="sidebar-link"><i class="fas fa-user-tie"></i> Manage Staff</a></li>
             <li class="sidebar-item"><a href="manage-warden.html" class="sidebar-link"><i class="fas fa-user-cog"></i> Manage Wardens</a></li>
-            <li class="sidebar-item active"><a href="manageroom.html" class="sidebar-link"><i class="fas fa-bed"></i> Manage Rooms</a></li>
+            <li class="sidebar-item"><a href="manageroom.html" class="sidebar-link"><i class="fas fa-bed"></i> Manage Rooms</a></li>
             <li class="sidebar-item"><a href="managecomplaints.html" class="sidebar-link"><i class="fas fa-exclamation-triangle"></i> Complaints</a></li>
             <li class="sidebar-item"><a href="managepayment.html" class="sidebar-link"><i class="fas fa-credit-card"></i> Payments</a></li>
             <li class="sidebar-item"><a href="report.html" class="sidebar-link"><i class="fas fa-file-alt"></i> Reports</a></li>
+            <li class="sidebar-item"><a href="inventory.html" class="sidebar-link"><i class="fas fa-warehouse"></i> Inventory</a></li>
+            <li class="sidebar-item"><a href="leavemanagement.html" class="sidebar-link"><i class="fas fa-sign-out-alt"></i> Leave Management</a></li>
             <li class="sidebar-item"><a href="update.html" class="sidebar-link"><i class="fas fa-cogs"></i> Settings</a></li>
-            <!-- Other menu items -->
         </ul>
     </aside>
 
@@ -38,12 +38,13 @@
         <div class="floor-selection">
             <label for="floorSelect">Select Floor:</label>
             <select id="floorSelect">
-                <option value="1">Ground Floor</option>
+                <!-- <option value="1">Ground Floor</option>
                 <option value="2">First Floor</option>
                 <option value="3">Second Floor</option>
                 <option value="4">Third Floor</option>
                 <option value="5">Fourth Floor</option>
-                <option value="6">Fifth Floor</option>
+                <option value="6">Fifth Floor</option> -->
+                <!-- floor data will be retrieved here from the server -->
             </select>
         </div>
 
@@ -52,7 +53,6 @@
 
         <!-- Room Information -->
         <div class="room-info">
-            <h2>Room Legend</h2>
             <div class="legend">
                 <div class="legend-item">
                     <div class="room available"></div>
@@ -65,6 +65,10 @@
                 <div class="legend-item">
                     <div class="room occupied"></div>
                     <span>Occupied</span>
+                </div>
+                <div class="legend-item">
+                    <div class="room under-maintenance"></div>
+                    <span>Under Maintenance</span>
                 </div>
             </div>
         </div>
@@ -88,6 +92,43 @@
                 <button type="submit" id="saveButton">Save Changes</button>
             </form>
         </div>
+        <div class="details-buttons">
+            <button id="allocated-room-details">Allocated Room Details</button>
+            <button id="available-room-details">Available Room Details</button>
+          </div>
+    </div>
+
+    <!-- Sections to display results -->
+    <div id="availableRoomsSection" class="available rooms section hidden">
+        <h2>Available Rooms</h2>
+        <table id="availableRoomsTable">
+            <thead>
+                <tr>
+                    <th>Room Number</th>
+                    <th>Floor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be populated here -->
+            </tbody>
+        </table>
+    </div>
+    
+    <div id="allocatedRoomsSection" class="allocated rooms section hidden">
+        <h2>Allocated Rooms</h2>
+        <table id="allocatedRoomsTable">
+            <thead>
+                <tr>
+                    <th>Room Number</th>
+                    <th>Floor</th>
+                    <th>Student Name</th>
+                    <th>Student ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be populated here -->
+            </tbody>
+        </table>
     </div>
 
     <script src="hostel.js"></script>

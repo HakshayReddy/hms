@@ -40,7 +40,7 @@ header h1 {
 }
 
 .form-group input, .form-group select {
-    width: 100%;
+    width: 98%;
     padding: 12px;
     border: 1px solid #ced4da;
     border-radius: 8px;

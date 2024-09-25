@@ -14,40 +14,72 @@
 
     <div class="main-content">
         <header>
-            <h1>Edit Student Details</h1>
+            <h1>Edit Student Details & Room Allocation</h1>
         </header>
         <form id="editStudentForm" class="student-form">
+            <!-- Student Information -->
             <div class="form-group">
                 <label for="studentName">Name:</label>
-                <input type="text" id="studentName" value="Ashish Raj" required>
+                <input type="text" id="studentName" value="" required>
+                 <!-- Student data will be retrieved here from the server -->
             </div>
             <div class="form-group">
                 <label for="fathersName">Father's Name:</label>
-                <input type="text" id="fathersName" value="Rajesh Kumar Verma" required>
+                <input type="text" id="fathersName" value="" required>
+                 <!-- Student data will be retrieved here from the server -->
             </div>
+
+            <!-- Room Allocation Section -->    
             <div class="form-group">
-                <label for="roomAllotted">Room Allotted:</label>
-                <select id="roomAllotted" required>
-                    <option value="516" selected>516 (Occupied)</option>
-                    <option value="515">515 (Empty)</option>
-                    <option value="517">517 (Empty)</option>
+                <label for="roomPreference">Room Preference:</label>
+                <select id="roomPreference" required>
+                    <!-- <option value="515">515 (Empty)</option>
+                    <option value="516">516 (Occupied)</option>
+                    <option value="517">517 (Empty)</option> -->
+                    <!-- Room data will be retrieved here from the server -->
                 </select>
             </div>
+            <div class="form-group">
+                <label for="roomStatus">Current Room:</label>
+                <select id="roomStatus" disabled>
+                    <!-- <option value="occupied">516 (Occupied)</option>
+                    <option value="empty">515 (Empty)</option>
+                    <option value="empty">517 (Empty)</option> -->
+                    <!-- Room data will be retrieved here from the server -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="roomAllotted">Select Room to Allot:</label>
+                <select id="roomAllotted" required>
+                    <!-- <option value="515">515 (Empty)</option>
+                    <option value="517">517 (Empty)</option> -->
+                    <!-- Room data will be retrieved here from the server -->
+                </select>
+            </div>
+
+            <!-- Branch Information -->
             <div class="form-group">
                 <label for="branch">Branch:</label>
                 <select id="branch" required>
-                    <option value="Computer Science" selected>Computer Science</option>
-                    <option value="Electrical">Electrical</option>
+                    <!-- <option value="Computer Science" selected>Computer Science</option>
+                    <option value="Electrical">Electrical</option> -->
+                    <!-- Branch data will be retrieved here from the server -->
                 </select>
             </div>
+
+            <!-- Contact Information -->
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" value="ashish.raj@example.com" required>
+                <input type="email" id="email" value="" required>
+                 <!-- Email data will be retrieved here from the server -->
             </div>
             <div class="form-group">
                 <label for="phone">Phone Number:</label>
-                <input type="text" id="phone" value="+911234567890" required>
+                <input type="text" id="phone" value="" required>
+                 <!-- phno data will be retrieved here from the server -->
             </div>
+
+            <!-- Submit/Cancel Buttons -->
             <div class="form-buttons">
                 <a href="managestudents.html" class="btn btn-cancel"><i class="fas fa-times"></i> Cancel</a>
                 <button type="submit" class="btn btn-submit"><i class="fas fa-save"></i> Save Changes</button>
