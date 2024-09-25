@@ -1,88 +1,103 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+import { getFirestore, doc, setDoc, getDoc, updateDoc, getDocs, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
+
+
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBN8TRqIX8UVK5BRYpOduSIBgZJbPudpew",
+  authDomain: "hostel-management-system-9797.firebaseapp.com",
+  projectId: "hostel-management-system-9797",
+  storageBucket: "hostel-management-system-9797.appspot.com",
+  messagingSenderId: "724870161719",
+  appId: "1:724870161719:web:05068d6f1aa4351e6666b2",
+  measurementId: "G-FWZZJC3QER"
+  };
+const app = initializeApp(firebaseConfig); // Modular SDK
+const db = getFirestore(app);
+const user = window.localStorage.getItem("username");   
+
+const docRef = doc(db, "students", user);
+
+
 const today = new Date().toISOString().split('T')[0];
 document.getElementById('from-date').setAttribute('min', today); 
-document.getElementById('to-date').setAttribute('min', today); 
-
-var data2=[["12345","ECS","29-08-2014","9:35 AM","29-08-2014","11:00 PM","Not Approved","Not Approved"],["23456","Shopping","29-08-2014","9:35 AM","29-08-2014","11:00 PM","Approved","Approved"]]
-var data=[["Pranav","22BCE7558","Mohan","pillala mari vari street, tenali",717,"2024-08-31","saipranav425@gmail.com","9014456063"],["Hakshay","22BCE9807","shiva","Ananthapur",717,"2005-06-24","hakshay2005@gmail.com","9398237819"]];
-function loadData()
-{
-    for(let i=0;i<data.length;i++)
-    {
-        var d1=data[i][0];
-        if(d1=="Pranav")
-        {
-            document.getElementById("name").value="Appala "+data[i][0]+" Sai";
-            document.getElementById("student-id").value=data[i][1];
-            document.getElementById("father-name").value=data[i][2];
-            document.getElementById("address").value=data[i][3];
-            document.getElementById("room").value=data[i][4];
-            document.getElementById("email").value=data[i][6];
-            document.getElementById("phone").value=data[i][7];
-        }
-    }
-    for(let i=0;i<data2.length;i++)
-    {
-        if(data2[i][6]=="Not Approved" && data2[i][7]=="Not Approved")
-        {
-            document.getElementById("tracker").innerHTML+=
-        `<div class="show-track">
-                <div class="leave-item">
-                    <p><strong>Leave Id: </strong>${data2[i][0]}</p>
-                    <p><strong>Purpose: </strong>${data2[i][1]}</p>
-                    <p><strong>From date: </strong>${data2[i][2]}<strong>           From time: </strong>${data2[i][3]}</p>
-                    <p><strong>To date: </strong>${data2[i][4]} <strong>           To time: </strong>${data2[i][5]}</p>
-                    <button class="download" id="download">Download Form</button>
-                    <p><strong>Status:</strong><strong> Mentor : </strong><span class="status-Napproved">${data2[i][6]}</span><strong> Warden : </strong><span class="status-Napproved">${data2[i][7]}</span></p>
-                </div>
-            </div>`;
-        }
-        else if(data2[i][6]=="Approved" && data2[i][7]=="Not Approved")
-        {
-            document.getElementById("tracker").innerHTML+=
-        `<div class="show-track">
-                <div class="leave-item">
-                    <p><strong>Leave Id: </strong>${data2[i][0]}</p>
-                    <p><strong>Purpose: </strong>${data2[i][1]}</p>
-                    <p><strong>From date: </strong>${data2[i][2]}<strong>           From time: </strong>${data2[i][3]}</p>
-                    <p><strong>To date: </strong>${data2[i][4]} <strong>           To time: </strong>${data2[i][5]}</p>
-                    <button class="download" id="download">Download Form</button>
-                    <p><strong>Status:</strong><strong> Mentor : </strong><span class="status-Approved">${data2[i][6]}</span><strong> Warden : </strong><span class="status-Napproved">${data2[i][7]}</span></p>
-                </div>
-            </div>`;
-        }
-        else if(data2[i][6]=="Approved" && data2[i][7]=="Approved"){
-            document.getElementById("tracker").innerHTML+=
-        `<div class="show-track">
-                <div class="leave-item">
-                    <p><strong>Leave Id: </strong>${data2[i][0]}</p>
-                    <p><strong>Purpose: </strong>${data2[i][1]}</p>
-                    <p><strong>From date: </strong>${data2[i][2]}<strong>           From time: </strong>${data2[i][3]}</p>
-                    <p><strong>To date: </strong>${data2[i][4]} <strong>           To time: </strong>${data2[i][5]}</p>
-                    <button class="download" id="download">Download Form</button>
-                    <p><strong>Status:</strong><strong> Mentor : </strong><span class="status-Approved">${data2[i][6]}</span><strong> Warden : </strong><span class="status-Approved">${data2[i][7]}</span></p>
-                    </div>
-            </div>`;
-        }
-    }
-}
-    loadData();
-// Toggle the editability of a specific input field
-function toggleEdit(field) {
-    var input = document.getElementById(field);
-    if(input.readOnly) 
-    {
+document.getElementById('to-date').setAttribute('min', today);
+document.getElementById('editphn').addEventListener('click',function(){
+    var input = document.getElementById('phone');
+    if (input.readOnly) {
         input.readOnly = false; // Make the input field editable
         input.focus(); // Set focus on the input field
-    } 
-    else 
-    {
+    } else {
         input.readOnly = true; // Make the input field read-only again
     }
+}); 
+document.getElementById('editem').addEventListener('click',function(){
+    var input = document.getElementById('email');
+    if (input.readOnly) {
+        input.readOnly = false; // Make the input field editable
+        input.focus(); // Set focus on the input field
+    } else {
+        input.readOnly = true; // Make the input field read-only again
+    }
+}); 
+async function loadData()
+{
+    try {
+        const docSnap = await getDoc(docRef); // Use getDoc for fetching data
+        if (docSnap.exists()) {
+            // Set form field values based on document data
+            document.getElementById("name").value = docSnap.data().name;
+            document.getElementById("student-id").value = user;
+            document.getElementById("father-name").value = docSnap.data().father;
+            document.getElementById("address").value = docSnap.data().address;
+            document.getElementById("room").value = docSnap.data().room;
+            document.getElementById("email").value = docSnap.data().email;
+            document.getElementById("phone").value = docSnap.data().phnNum;
+        } else {
+            console.log("No such document!");
+        }
+    } catch (error) {
+        console.error("Error getting document:", error);
+    }    
+        const querySnapshot = await getDocs(collection(db, "leaves"));
+        querySnapshot.forEach(async (doc) => {
+                if(doc.data().regno == user) {
+                    document.getElementById("tracker").innerHTML+=
+        `<div class="show-track">
+                <div class="leave-item">
+                    <p><strong>Leave Id: </strong>${doc.id}</p>
+                    <p><strong>Purpose: </strong>${doc.data().purpose}</p>
+                    <p><strong>From date: </strong>${doc.data().fromdate}<strong>From time: </strong>${doc.data().fromtime}</p>
+                    <p><strong>To date: </strong>${doc.data().todate} <strong>To time: </strong>${doc.data().totime}</p>
+                    <button class="download" id="download">Download Form</button>
+                    <p><strong>Status:</strong><strong> Mentor : </strong><span class="status-${doc.data().mentorA}">${doc.data().mentorA}</span><strong> Warden : </strong><span class="status-${doc.data().wardenA}">${doc.data().wardenA}</span></p>
+                </div>
+            </div>`;
+                }
+          });
 }
+loadData();
 
 // Handle form submission: Prevent default behavior and show the confirmation popup
-document.getElementById('profile-form').onsubmit = function(event) {
+document.getElementById('profile-form').onsubmit =async function(event) {
     event.preventDefault(); // Prevent the form from submitting normally
+
+    await addDoc(collection(db, "leaves"), {
+        regno: user,
+        fromdate:document.getElementById("from-date").value, 
+        fromtime:document.getElementById("from-time").value, 
+        todate:document.getElementById("to-date").value, 
+        totime:document.getElementById("to-time").value, 
+        mentorA: "Not-Approved", 
+        wardenA: "Not-Approved", 
+        purpose: document.getElementById("purpose").value,
+    });
+
     document.getElementById('popup').classList.add('show'); // Display the confirmation popup
 };
 
@@ -101,9 +116,9 @@ document.getElementById('cancel-btn').onclick = function() {
 };
 
 // Manually close the success message
-function closeSuccessMessage() {
+document.getElementById("closeSuc").addEventListener('click', function () {
     document.getElementById('success-message').classList.remove('show'); // Hide the success message
-}
+});
 function generateReceiptHTML() {
     // Create the HTML content for the receipt
     var receiptHTML = `
@@ -184,13 +199,13 @@ function generateReceiptHTML() {
 
     return receiptHTML;
 }
-document.getElementById('download').addEventListener('click',function()
-{
-    var receiptIframe = document.getElementById("receiptIframe");
-    receiptIframe.contentWindow.document.open();
-    receiptIframe.contentWindow.document.write(generateReceiptHTML());
-    receiptIframe.contentWindow.document.close();
-    receiptIframe.contentWindow.print();
+// document.getElementById('download').addEventListener('click',function()
+// {
+//     var receiptIframe = document.getElementById("receiptIframe");
+//     receiptIframe.contentWindow.document.open();
+//     receiptIframe.contentWindow.document.write(generateReceiptHTML());
+//     receiptIframe.contentWindow.document.close();
+//     receiptIframe.contentWindow.print();
 
-});
+// });
 

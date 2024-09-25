@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded',async () => {
         }
         const querySnapshot = await getDocs(collection(db, "leaves"));
         querySnapshot.forEach(async (doc) => {
-            if(doc.data().wardenA == "Not Approved") {
+            if(doc.data().wardenA == "Not-Approved") {
                 const newRow = document.createElement('tr');
                 newRow.innerHTML = `
                     <td>${doc.id}</td>
