@@ -7,6 +7,7 @@
     <link rel="icon" href="./Components/Images/img.png" type="image/png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
     <link rel="stylesheet" href="./Components/Styling/payment-options.css">
+
 </head>
 <body>
     <header>
@@ -14,9 +15,9 @@
     </header>
     <section class="payment-options">
         <h2>Select Payment Method</h2>
-        <form class="payment-form" id="paymentForm" onsubmit="processPayment(event)">
+    <form class="payment-form" id="paymentForm">
             <label for="paymentMethod">Payment Method:</label>
-            <select id="paymentMethod" onchange="showPaymentDetails()">
+            <select id="paymentMethod">
                 <option value="">Select...</option>
                 <option value="upi">UPI</option>
                 <option value="creditCard">Credit Card</option>
@@ -30,7 +31,7 @@
                         <label for="upiId">UPI ID:</label>
                         <input type="text" id="upiId" placeholder="Enter your UPI ID">
                     </div>
-                    <button type="button" class="verify-button" onclick="verifyUPI()">Verify</button>
+                    <button type="button" class="verify-button" id ="verifyu">Verify</button>
                 </div>
                 <div id="verificationMessage" class="verification-message hidden"></div>
             </div>
@@ -64,8 +65,9 @@
                 </div>
             </div>
 
-            <button type="submit" id="payButton" disabled>Pay ₹5000</button>
+            <button type="submit" id="payButton" disabled>Pay</button>
         </form>
+        <iframe id="receiptIframe" style="display: none;"></iframe>
         <a href="payments.html" class="back-button">Back to List</a>
     </section>
 
@@ -73,7 +75,7 @@
     <div id="paymentModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <span class="close" onclick="closeModal()">&times;</span>
+                <span class="close" id="closem">&times;</span>
                 <h2>Payment Successful</h2>
             </div>
             <div class="modal-body">
@@ -81,12 +83,11 @@
                 <p>You can download your receipt using the button below:</p>
             </div>
             <div class="modal-footer">
-                <a href="receipt.pdf" download>
-                    <button>Download Receipt</button>
+                    <button id="download">Download Receipt</button>
                 </a>
             </div>
         </div>
     </div>
-    <script src="./Components/Scripting/payment-options.js"></script>
+    <script type="module" src="./Components/Scripting/payment-options.js"></script>
 </body>
 </html>

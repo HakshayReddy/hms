@@ -92,7 +92,7 @@ form label {
 }
 
 form select, form textarea {
-    width: 100%;
+    width: 550px;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
@@ -194,7 +194,8 @@ footer {
 .complaint-item {
     margin-bottom: 15px;
     padding: 10px;
-    border: 1px solid #ddd;
+    border-style: double;
+    /* border: 1px solid #ddd; */
     border-radius: 5px;
 }
 

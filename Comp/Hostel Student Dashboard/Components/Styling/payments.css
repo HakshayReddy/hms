@@ -163,7 +163,7 @@ table tr:hover td {
     color: #d9534f;
 }
 
-.total-balance .button {
+.actions .button {
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
@@ -177,7 +177,7 @@ table tr:hover td {
     transition: background-color 0.3s ease;
 }
 
-.total-balance .button:hover {
+.actions .button:hover {
     background-color: #0056b3;
 }
 

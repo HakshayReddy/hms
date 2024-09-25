@@ -85,6 +85,7 @@ nav {
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     height:auto;
+    padding-bottom: 20px;
 }
 .leave-item
 {
@@ -164,7 +165,7 @@ h2 {
     color: #ffae00;
     font-size: 1.2rem;
     position: absolute;
-    left: 48.7rem;
+    left: 37rem;
     top: 50%;
     transform: translateY(-50%);
 }
@@ -252,3 +253,23 @@ footer {
     border-radius: 5px;
 }
 
+.status-Napproved {
+    color: red;
+    font-weight: bold;
+}
+
+.status-Approved {
+    color: green;
+    font-weight: bold;
+}
+.download
+{
+    background-color: #ffae00;
+    color: #fff;
+    border: none;
+    padding: 0.5rem ;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 42rem;
+    position: absolute;
+}

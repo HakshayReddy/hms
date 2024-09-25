@@ -28,16 +28,16 @@ document.addEventListener('DOMContentLoaded',async () => {
             tBody.deleteRow(tBody.rows.length - 1); // Remove the last row
         }
         const querySnapshot = await getDocs(collection(db, "leaves"));
-        querySnapshot.forEach((doc) => {
+        querySnapshot.forEach(async (doc) => {
             if(doc.data().wardenA == "Not Approved") {
                 const newRow = document.createElement('tr');
                 newRow.innerHTML = `
                     <td>${doc.id}</td>
                     <td>${doc.data().regno}</td>
-                    <td>${getStdName(doc.data().regno)}</td>
+                    <td>${await getStdName(doc.data().regno)}</td>
                     <td>${doc.data().purpose}</td>
                     <td>${doc.data().fromdate}</td>
-                    <td><a href="#" class="approve-link" data-id="${doc.id}">Approve</a></td>
+                    <td><button class="approve-link" style="background-color:green" data-id="${doc.id}">Approve</button></td>
                 `;
                 tBody.appendChild(newRow);
             }
@@ -55,11 +55,21 @@ document.addEventListener('DOMContentLoaded',async () => {
     async function approve(leave) {
         await updateDoc(doc(db, "leaves", leave), { wardenA: "Approved"});
     }
-    function getStdName(user) {
-        var name = "name";
+    async function getStdName(user) {
+        console.log(user);
+        const docRef = doc(db, 'students', user);
 
-
-        return name;
+        // Fetch the document
+        const docSnap = await getDoc(docRef);
+    
+        // Check if the document exists
+        if (docSnap.exists()) {
+            // Return the 'name' field from the document
+            return docSnap.data().name;
+        } else {
+            console.log("No such document!");
+            return null;
+        }
     }
 
     // Handle Check-Out Form Submission

@@ -1,3 +1,8 @@
+
+
+
+
+
 // Reference to the modal element for displaying success messages
 var modal = document.getElementById('successModal');
 
@@ -29,22 +34,37 @@ window.onclick = function(event) {
 }
 
 // Toggle the display of the tracker section when the tracker button is clicked
-trackerButton.addEventListener('click', () => {
-    trackerSection.style.display = trackerSection.style.display === 'block' ? 'none' : 'block';
-});
-// data =[["Maintenance","the not nice","over"],["Room Cleaning","the not nice","not over"]];
 // trackerButton.addEventListener('click', () => {
-//     var option=document.getElementById('complaint-type').value;
-//     for(let i=0;i<data.length;i++)
-//     {
-//         if(data[i][0]==option)
-//         {
-//             // document.getElementById("Maintenance").value=data[i][0];
-//             // document.getElementById("discription").value=data[i][1];
-//             // document.getElementById("progress").value=data[i][2];
-//             // document.getElementById("trackerSection").innerHTML+=document.getElementById(addon);
-//             trackerSection.style.display = trackerSection.style.display === 'block' ? 'none' : 'block';
-//         }
-
-//     }
+//     trackerSection.style.display = trackerSection.style.display === 'block' ? 'none' : 'block';
 // });
+data =[["maintenance","the not nice","in-progress"],["Room Cleaning","the not nice","resolved"],["mg","the not nice","pending"]];
+trackerButton.addEventListener('click', () => {
+    var option=document.getElementById('complaint-type').value;
+    for(let i=0;i<data.length;i++)
+    {
+        if(data[i][2]=="in-progress")
+        {
+            trackerSection.innerHTML+=`<div class="complaint-item">
+            <h3 id="Maintenance">${data[i][0]}</h3>
+            <p><strong>Description:</strong> ${data[i][1]}</p>
+            <p><strong>Status:</strong> <span class="status-in-progress">${data[i][2]}</span></p>
+        </div>`;
+        }
+        else if(data[i][2]=="resolved")
+        {
+            trackerSection.innerHTML+=`<div class="complaint-item">
+            <h3 id="Maintenance">${option}</h3>
+            <p><strong>Description:</strong> ${data[0][1]}</p>
+            <p><strong>Status:</strong> <span class="status-resolved">${data[i][2]}</span></p>
+        </div>`;
+        }
+        else if(data[i][2]=="pending"){
+            trackerSection.innerHTML+=`<div class="complaint-item">
+            <h3 id="Maintenance">${option}</h3>
+            <p><strong>Description:</strong> ${data[0][1]}</p>
+            <p><strong>Status:</strong> <span class="status-pending">${data[i][2]}</span></p>
+        </div>`;
+        }
+        trackerSection.style.display = trackerSection.style.display === 'block' ? 'none' : 'block';
+    }
+});
