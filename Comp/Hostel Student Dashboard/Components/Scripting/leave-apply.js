@@ -75,7 +75,7 @@ async function loadData()
                     <p><strong>Purpose: </strong>${doc.data().purpose}</p>
                     <p><strong>From date: </strong>${doc.data().fromdate}<strong>From time: </strong>${doc.data().fromtime}</p>
                     <p><strong>To date: </strong>${doc.data().todate} <strong>To time: </strong>${doc.data().totime}</p>
-                    <button class="download" id="download">Download Form</button>
+                    <button class="download" id="download" data-id = "${doc.id}">Download Form</button>
                     <p><strong>Status:<span class="status-${doc.data().wardenA}">&nbsp${doc.data().wardenA}</span></p>
                 </div>
             </div>`;
@@ -115,13 +115,25 @@ document.getElementById('confirm-btn').onclick = function() {
 document.getElementById('cancel-btn').onclick = function() {
     document.getElementById('popup').classList.remove('show'); // Hide the confirmation popup
 };
-
+    
 // Manually close the success message
 document.getElementById("closeSuc").addEventListener('click', function () {
     document.getElementById('success-message').classList.remove('show'); // Hide the success message
 });
-function generateReceiptHTML() {
+async function generateReceiptHTML(leaveid) {
     // Create the HTML content for the receipt
+    const docSnap = await getDoc(docRef); // Use getDoc for fetching data
+    const docSnapL = await getDoc(doc(db,"leaves",leaveid)); // Use getDoc for fetching data
+    var name= await docSnap.data().name;
+    var fromdate =await  docSnapL.data().fromdate;
+    var todate = await docSnapL.data().todate;
+    var fromtime = await docSnapL.data().fromtime;
+    var totime =await  docSnapL.data().totime;
+    var phone =await  docSnap.data().phnNum;
+    var purpose =await docSnapL.data().purpose;
+    var room = await docSnap.data().room;
+
+
     var receiptHTML = `
         <!DOCTYPE html>
 <html>
@@ -159,39 +171,31 @@ function generateReceiptHTML() {
 <body>
     <div class="pass">
         <h2>HOSTEL WEEKEND OUT PASS</h2>
-        <p>Outing ID: W2167359</p>
+        <p>Outing ID: ${leaveid}</p>
         <p>Date: 18-08-2024</p>
         <div class="details">
             <p>1. Regd No : </p>
-            <p>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 22BCE7558</p>
+            <p>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ${await user}</p>
         </div>
         <div class="details">
             <p>2. Name : </p>
-            <p>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  APPALA PRANAV SAI</p>
-        </div>
-        <div class="details">
-            <p>3. Hostel Block : </p>
-            <p>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp MH-4</p>
+            <p>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  ${await name}</p>
         </div>
         <div class="details">
             <p>4. Hostel Room No : </p>
-            <p>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp&nbsp 502</p>
-        </div>
-        <div class="details">
-            <p>5. Place Of Visit : </p>
-            <p>&nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp Vijayawada</p>
+            <p>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp&nbsp ${await room}</p>
         </div>
         <div class="details">
             <p>6. Purpose Of Visit : </p>
-            <p>&nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp shopping</p>
+            <p>&nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp ${await purpose}</p>
         </div>
         <div class="details">
             <p>7. Date & Time Slot : </p>
-            <p>&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp&nbsp &nbsp 18-08-2024 & 9:30 AM-3:30PM</p>
+            <p>&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp&nbsp &nbsp ${await fromdate} & ${await fromtime} - ${await todate} & ${await totime}</p>
         </div>
         <div class="details">
             <p>8. Contact No : </p>
-            <p>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp 9014456063</p>
+            <p>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp ${await phone}</p>
         </div>
     </div>
 </body>
@@ -200,13 +204,14 @@ function generateReceiptHTML() {
 
     return receiptHTML;
 }
-// document.getElementById('download').addEventListener('click',function()
-// {
-//     var receiptIframe = document.getElementById("receiptIframe");
-//     receiptIframe.contentWindow.document.open();
-//     receiptIframe.contentWindow.document.write(generateReceiptHTML());
-//     receiptIframe.contentWindow.document.close();
-//     receiptIframe.contentWindow.print();
-
-// });
+document.addEventListener('click', async function(event) {
+    if (event.target && event.target.classList.contains('download')) {
+        console.log('Print');
+        var receiptIframe = document.getElementById("receiptIframe");
+        receiptIframe.contentWindow.document.open();
+        receiptIframe.contentWindow.document.write(await generateReceiptHTML(event.target.getAttribute('data-id')));
+        receiptIframe.contentWindow.document.close();
+        receiptIframe.contentWindow.print();
+    }
+});
 

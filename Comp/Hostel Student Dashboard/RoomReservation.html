@@ -9,42 +9,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <header>
+        <h1 >Room Reservation</h1>
+        <a href="../../index.html" class="logout-btn">Logout</a> <!-- Added Logout Button -->
+    </header>
+    <nav>
+        <ul class="navbar">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="payments.html">Payments</a></li>
+            <li><a href="complaints.html">Complaints</a></li>
+            <li><a href="LeaveApplication.html">Apply Leave</a></li>
+            <li><a href="RoomReservation.html" class="active">Room Reservation</a></li>
+        </ul>
+    </nav>
     <!-- Main Content -->
+
     <div class="main-content">
-        <header>
-            <h1>Room Reservation</h1>
-        </header>
-        <nav>
-            <ul class="navbar">
-                <li><a href="index.html">Dashboard</a></li>
-                <li><a href="payments.html">Payments</a></li>
-                <li><a href="complaints.html">Complaints</a></li>
-                <li><a href="LeaveApplication.html">Apply Leave</a></li>
-                <li><a href="RoomReservation.html" class="active">Room Reservation</a></li>
-            </ul>
-        </nav>
         <!-- Floor Selection -->
         <div class="floor-selection">
             <label for="floorSelect">Select Floor:</label>
             <select id="floorSelect">
+                <option value="0">Select Field</option>
                 <option value="1">Ground Floor</option>
                 <option value="2">First Floor</option>
                 <option value="3">Second Floor</option>
                 <option value="4">Third Floor</option>
                 <option value="5">Fourth Floor</option>
                 <option value="6">Fifth Floor</option>
+                <option value="7">Sixth Floor</option>
             </select>
+            <label for="roomtype">&nbsp &nbsp &nbsp Select Room Type:</label>
             <select id="roomtype">
-                <option value="1">2 Bed NAC</option>
-                <option value="2">2 Bed AC</option>
-                <option value="3">4 Bed NAC</option>
-                <option value="4">4 Bed AC</option>
-                <option value="5">5 Bed Apartment NAC</option>
-                <option value="6">5 Bed Apartment AC</option>
-                <option value="7">12 Dorms NAC</option>
-            </select>
-            <select id="hostelblock">
-                <option value="1">MH1</option>
+                <option value="0">Select Field</option>
             </select>
         </div>
 

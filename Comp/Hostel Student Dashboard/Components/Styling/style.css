@@ -12,7 +12,11 @@ header {
     padding: 15px;
     text-align: center;
 }
-
+.load
+{
+    text-align: left;
+    padding-left: 50px;
+}
 nav {
     background: linear-gradient(90deg, #007bff, #0056b3);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -166,87 +170,6 @@ nav {
 .logout-btn:hover {
     background-color: #c82333;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-
-.profile-pic {
-    margin: 20px auto;
-    width: 150px;
-    height: 150px;
-    overflow: hidden;
-    border-radius: 50%;
-    border: 3px solid #007bff;
-}
-
-.profile-pic img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-
-
-.announcements,
-.quick-links,
-.recent-activity {
-    background: linear-gradient(135deg, #ffffff, #f8f9fa);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-}
-
-.quick-links h2 {
-    color: #007bff;
-    margin-bottom: 20px;
-}
-
-.quick-links-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.quick-link {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    margin: 10px 0;
-    text-decoration: none;
-    color: #fff;
-    background-color: #007bff;
-    border-radius: 4px;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.quick-link i {
-    font-size: 18px;
-    margin-right: 10px;
-}
-
-.quick-link span {
-    font-size: 16px;
-}
-
-.quick-link:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-}
-
-.recent-activity ul,
-.announcements ul {
-    list-style: none;
-    padding: 0;
-}
-
-.recent-activity li,
-.announcements li {
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-}
-
-.recent-activity li:last-child,
-.announcements li:last-child {
-    border-bottom: none;
 }
 
 footer {

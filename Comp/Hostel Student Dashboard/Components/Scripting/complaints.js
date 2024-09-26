@@ -54,9 +54,8 @@ window.onclick = function(event) {
         modal.style.display = 'none'; // Hide the modal if clicked outside
     }
 }
-
 trackerButton.addEventListener('click', async function(){
-    console.log("Hello ");
+        trackerSection.innerHTML="";
         const querySnapshot = await getDocs(collection(db, "complaints"));
         querySnapshot.forEach(async (doc) => {
             if(doc.data().reg == window.localStorage.getItem("username")) {

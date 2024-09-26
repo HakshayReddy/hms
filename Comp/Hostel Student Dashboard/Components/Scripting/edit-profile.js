@@ -20,11 +20,10 @@ const firebaseConfig = {
   };
 const app = initializeApp(firebaseConfig); // Modular SDK
 const db = getFirestore(app);
-const textArea = document.getElementById("name");
-textArea.addEventListener('input', function() {
-  this.style.height = 'auto'; // Reset height to auto
-  this.style.height = this.scrollHeight + 'px'; // Set height based on content
-});
+// textArea.addEventListener('input', function() {
+//   this.style.height = 'auto'; // Reset height to auto
+//   this.style.height = this.scrollHeight + 'px'; // Set height based on content
+// });
 // Toggle the editability of a specific input field
 
 document.getElementById("edit-phn").addEventListener("click", function () {
@@ -60,6 +59,7 @@ async function loadData()
             document.getElementById("address").value = docSnap.data().address;
             document.getElementById("room").value = docSnap.data().room;
             document.getElementById("admission-date").value = docSnap.data().admissiondate;
+            document.getElementById("course").value = docSnap.data().course;
             document.getElementById("email").value = docSnap.data().email;
             document.getElementById("phone").value = docSnap.data().phnNum;
         } else {

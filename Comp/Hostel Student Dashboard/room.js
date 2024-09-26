@@ -20,19 +20,23 @@ document.addEventListener('DOMContentLoaded', () =>
     const details = document.getElementById('details');
     const roomForm = document.getElementById('roomForm');
     const floorSelect = document.getElementById('floorSelect');
+    const roomtype = document.getElementById('roomtype');
+    let numstudents;
     const floorRooms = {
-        1: ['001', '002', '003', '004', '005', '006', '007', '008', '009'],
-        2: ['101', '102', '103', '104', '105', '106', '107', '108', '109'],
-        3: ['201', '202', '203', '204', '205', '206', '207', '208', '209'],
-        4: ['301', '302', '303', '304', '305', '306', '307', '308', '309'],
-        5: ['401', '402', '403', '404', '405', '406', '407', '408', '409'],
-        6: ['501', '502', '503', '504', '505', '506', '507', '508', '509']
-    };
-
-    const singleRooms = ['001', '002', '003', '101', '102', '103', '201', '202', '203', '301', '302', '303', '401', '402', '403', '501', '502', '503'];
-
-    const getRoomType = (room) => {
-        return singleRooms.includes(room) ? 'Single' : 'Triple';
+    '1' : [],
+    '11' : ['001', '003', '005', '007', '009'],
+    '21' : ['102', '104', '106', '108'],
+    '12' : ['002', '004', '006', '008'],
+    '22' : ['101', '103', '105', '107', '109'],
+    '33' : ['201', '203', '205', '207', '209'],
+    '43' : ['302', '304', '306', '308'],
+    '34' : ['202', '204', '206', '208'],
+    '44' : ['301', '303', '305', '307', '309'],
+    '55' : ['401', '403', '405', '407', '409'],
+    '65' : ['502', '504', '506', '508'],
+    '56' : ['402', '404', '406', '408'],
+    '66' : ['501', '503', '505', '507', '509'],
+    '712' : ['601', '602', '603', '604', '606', '607', '608', '609', '605']
     };
 
     // room-map
@@ -40,19 +44,67 @@ document.addEventListener('DOMContentLoaded', () =>
         const rooms = floorRooms[floor];
         roomMap.innerHTML = ''; // Clear previous rooms
         rooms.forEach(room => {
-            const roomElement = document.createElement('div');
-            roomElement.className = `room available`;
+        const roomElement = document.createElement('div');
+        roomElement.className = `room available`;
 
-            roomElement.dataset.room = room;
-            roomElement.textContent = room; // Display room number only in the box
-            roomMap.appendChild(roomElement);
-        });
-    };
-
-    floorSelect.addEventListener('change', (e) => {
-        renderRooms(e.target.value);
+        roomElement.dataset.room = room;
+        roomElement.textContent = room; // Display room number only in the box
+        roomMap.appendChild(roomElement);
     });
+    def()
+    };
+    
+    floorSelect.addEventListener('click', (e) => {
+        if(e.target.value==1 || e.target.value==2)
+        {
+            roomtype.innerHTML=`<option value="1">2 Bed NAC</option>
+                <option value="2">2 Bed AC</option>`;
 
+            if(roomtype.value==1)
+            {
+                numstudents=2;
+            }
+            else{
+                numstudents=2;
+
+            }
+        }
+        else if(e.target.value==3 || e.target.value==4)
+        {
+            roomtype.innerHTML=`<option value="3">4 Bed NAC</option>
+                <option value="4">4 Bed AC</option>`;
+
+            if(roomtype.value==3)
+            {
+                numstudents=4;
+            }
+            else{
+                numstudents=4;
+
+            }
+        }
+        else if(e.target.value==5 || e.target.value==6)
+        {
+            roomtype.innerHTML=`<option value="5">5 Bed Apartment NAC</option>
+                <option value="6">5 Bed Apartment AC</option>`;
+            
+            if(roomtype.value==5)
+            {
+                numstudents=5;
+            }
+            else{
+                numstudents=5;
+
+            }
+        }
+        else if(e.target.value==7){
+            roomtype.innerHTML=`<option value="12">12 Dorms NAC</option>`;
+            numstudents=12;
+        }
+    });
+    roomtype.addEventListener('click', (e) => {
+        renderRooms(floorSelect.value+e.target.value);
+    });
     roomMap.addEventListener('click', (e) => {
         if (e.target.classList.contains('room')) {
             const selectedRoom = document.querySelector('.room.selected');
@@ -88,10 +140,10 @@ document.addEventListener('DOMContentLoaded', () =>
             alert('Please select a room and status.');
         }
     });
-    renderRooms(1);
     function def()
     {
-        for(let i=1;i<6;i++)
+        details.innerHTML="";
+        for(let i=1;i<=numstudents;i++)
             {
                 details.innerHTML +=`<div class="childDetails" id="childDetails}">
             <div class="chdetails">
@@ -110,7 +162,6 @@ document.addEventListener('DOMContentLoaded', () =>
             }
             document.getElementById("student1-id").readOnly = true;
     }
-    def()
     function showNotification(message) 
     {
         const notification = document.createElement('div');
