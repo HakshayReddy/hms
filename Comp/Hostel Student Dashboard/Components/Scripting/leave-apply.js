@@ -65,6 +65,7 @@ async function loadData()
         console.error("Error getting document:", error);
     }    
         const querySnapshot = await getDocs(collection(db, "leaves"));
+        document.getElementById("tracker").innerHTML="";
         querySnapshot.forEach(async (doc) => {
                 if(doc.data().regno == user) {
                     document.getElementById("tracker").innerHTML+=
@@ -102,6 +103,7 @@ document.getElementById('profile-form').onsubmit =async function(event) {
 
 // Handle the confirm button click: Hide the popup and show the success message
 document.getElementById('confirm-btn').onclick = function() {
+    loadData();
     document.getElementById('popup').classList.remove('show'); // Hide the confirmation popup
     document.getElementById('success-message').classList.add('show'); // Display the success message
     setTimeout(() => {
