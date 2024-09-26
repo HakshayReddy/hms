@@ -24,7 +24,6 @@
             <li class="sidebar-item active"><a href="index.html" class="sidebar-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
             <li class="sidebar-item"><a href="managestudents.html" class="sidebar-link"><i class="fas fa-user-graduate"></i> Manage Students</a></li>
             <li class="sidebar-item"><a href="manage-staff.html" class="sidebar-link"><i class="fas fa-user-tie"></i> Manage Staff</a></li>
-            <li class="sidebar-item"><a href="manage-warden.html" class="sidebar-link"><i class="fas fa-user-cog"></i> Manage Wardens</a></li>
             <li class="sidebar-item"><a href="manageroom.html" class="sidebar-link"><i class="fas fa-bed"></i> Manage Rooms</a></li>
             <li class="sidebar-item"><a href="managecomplaints.html" class="sidebar-link"><i class="fas fa-exclamation-triangle"></i> Complaints</a></li>
             <li class="sidebar-item"><a href="managepayment.html" class="sidebar-link"><i class="fas fa-credit-card"></i> Payments</a></li>
@@ -44,37 +43,30 @@
             <div class="overview-card">
                 <i class="fas fa-users"></i>
                 <div class="overview-info">
-                    <h3>150</h3>
+                    <h3 id="totusers"></h3>
                     <p>Total Users</p>
                 </div>
             </div>
             <div class="overview-card">
                 <i class="fas fa-user-graduate"></i>
                 <div class="overview-info">
-                    <h3>80</h3>
+                    <h3 id="stdntcnt"></h3>
                     <p>Students</p>
                 </div>
             </div>
             <div class="overview-card">
                 <i class="fas fa-user-tie"></i>
                 <div class="overview-info">
-                    <h3>20</h3>
+                    <h3 id="staffcnt"></h3>
                     <p>Staff Members</p>
-                </div>
-            </div>
-            <div class="overview-card">
-                <i class="fas fa-user-cog"></i>
-                <div class="overview-info">
-                    <h3>5</h3>
-                    <p>Wardens</p>
                 </div>
             </div>
             <!-- Additional Overview Cards -->
             <div class="overview-card">
                 <i class="fas fa-tools"></i>
                 <div class="overview-info">
-                    <h3>5</h3>
-                    <p>Maintenance Requests</p>
+                    <h3 id= "cmplcnt"></h3>
+                    <p>Complaints</p>
                 </div>
             </div>
         </div>
@@ -87,6 +79,6 @@
         </div>
     </div>
 
-    <script src="admin.js"></script>
+    <script type = "module" src="admin.js"></script>
 </body>
 </html>

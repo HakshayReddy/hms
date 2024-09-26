@@ -17,7 +17,6 @@
             <li class="sidebar-item"><a href="index.html" class="sidebar-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
             <li class="sidebar-item"><a href="managestudents.html" class="sidebar-link"><i class="fas fa-user-graduate"></i> Manage Students</a></li>
             <li class="sidebar-item"><a href="manage-staff.html" class="sidebar-link"><i class="fas fa-user-tie"></i> Manage Staff</a></li>
-            <li class="sidebar-item"><a href="manage-warden.html" class="sidebar-link"><i class="fas fa-user-cog"></i> Manage Wardens</a></li>
             <li class="sidebar-item"><a href="manageroom.html" class="sidebar-link"><i class="fas fa-bed"></i> Manage Rooms</a></li>
             <li class="sidebar-item"><a href="managecomplaints.html" class="sidebar-link"><i class="fas fa-exclamation-triangle"></i> Complaints</a></li>
             <li class="sidebar-item"><a href="managepayment.html" class="sidebar-link"><i class="fas fa-credit-card"></i> Payments</a></li>
@@ -55,45 +54,74 @@
 
         <!-- Check-Out Form -->
         <div class="form-section">
-            <h2>Check-Out</h2>
-            <form id="checkOutForm">
-                <label for="studentNameOut">Student Name:</label>
-                <input type="text" id="studentNameOut" required>
-
-                <label for="roomNumberOut">Room Number:</label>
-                <input type="text" id="roomNumberOut" required>
-
-                <label for="purposeOut">Purpose:</label>
-                <input type="text" id="purposeOut" required>
-
-                <label for="addressOut">Address:</label>
-                <input type="text" id="addressOut" required>
-
-                <label for="leaveDateOut">Leave Date and Time:</label>
-                <input type="datetime-local" id="leaveDateOut" required>
-
-                <button type="submit">Submit Check-Out</button>
-            </form>
-        </div>
-
-        <!-- Records Table -->
-        <div class="records-section">
-            <h2>Records</h2>
-            <table id="recordsTable">
-                <thead>
-                    <tr>
-                        <th>Action</th>
-                        <th>Student Name</th>
-                        <th>Room Number</th>
-                        <th>Purpose</th>
-                        <th>Address</th>
-                        <th>Leave Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Records will be populated here -->
-                </tbody>
-            </table>
+            <h2>Apply Leave</h2>
+            <section id="leave-apply">
+                <div class="section">
+                    <form id="profile-form" action="#" method="POST">
+                        <div class="form-group">
+                            <label for="student-id">Student Id</label>
+                            <input type="text" id="student-id" name="student-id" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" value="" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="father-name">Father's Name</label>
+                            <input type="text" id="father-name" name="father-name" value="" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" value="" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="room">Room No</label>
+                            <input type="text" id="room" name="room" value="" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="purpose">Purpose</label>
+                            <input type="text" id="purpose" name="purpose">
+                        </div>
+                        <div class="form-group">
+                            <label for="from-date">From Date</label>
+                            <input type="date" id="from-date" name="from-date">
+                        </div>
+                        <div class="form-group">
+                            <label for="from-time">From Time</label>
+                            <input type="time" id="from-time" name="from-time">
+                        </div>
+                        <div class="form-group">
+                            <label for="to-date">To Date</label>
+                            <input type="date" id="to-date" name="to-date">
+                        </div>
+                        <div class="form-group">
+                            <label for="to-time">To Time</label>
+                            <input type="time" id="to-time" name="to-time">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" value="" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" value="" readonly>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" id="apply">Apply Leave</button>
+                        </div>              
+                    </form>
+                    <iframe id="receiptIframe" style="display: none;"></iframe>
+                </div>
+            </section>
+            <div id="popup" class="popup">
+                <p>Are you sure you want to apply the Leave?</p>
+                <button id="confirm-btn">Yes</button>
+                <button class="cancel" id="cancel-btn">No</button>
+            </div>
+            <div id="success-message" class="success-message">
+                <p>Leave Applied successfully!</p>
+                <button id="closeSuc">OK</button>
+            </div>
         </div>
     </div>
 
