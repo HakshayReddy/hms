@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Hostel Management</title>
+    <link rel="stylesheet" href="report.css">
+    <!-- Include FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Logout Button -->
+    <div class="logout-container">
+        <a href="../../index.html" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <i class="fas fa-user-shield"></i> Hostel Admin
+        </div>
+        <ul class="sidebar-menu">
+            <li class="sidebar-item"><a href="index.html" class="sidebar-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li class="sidebar-item"><a href="UserManagement.html" class="sidebar-link"><i class="fas fa-user-graduate"></i> User Management</a></li>
+            <li class="sidebar-item active"><a href="report.html" class="sidebar-link"><i class="fas fa-file-alt"></i> Reports</a></li>
+            <li class="sidebar-item"><a href="SystemMaintenance.html" class="sidebar-link"><i class="fas fa-sign-out-alt"></i> System Maintenance</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h1>Reports</h1>
+        </header>
+        <a class="btn fas " href = "#" id = "usage" >Save Usage Reports</a>
+        <a class="btn fas " href = "#" id = "perf">Save Performance Reports</a>
+        <a class="btn fas " href = "#" id = "fin">Save Financial Reports</a>
+
+    </div>
+
+    <script src="report.js"></script>
+</body>
+</html>

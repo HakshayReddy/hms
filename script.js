@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
           roleDB =  doc.data().role;
         }
       });
+      console.log( (roleDB == role) && (pass == password));
     return( (roleDB == role) && (pass == password));
 }
   form.addEventListener("submit", async function (event) {
@@ -53,8 +54,8 @@ document.addEventListener("DOMContentLoaded", function () {
           case "staff":
             window.location.href = "./Comp/Hostel Staff Dashboard/index.html"; // Update with the correct path
             break;
-          case "system admin":
-            window.location.href = "./Comp/Hostel Staff Dashboard/index.html"; // Update with the correct path
+          case "sysadmin":
+            window.location.href = "./Comp/System Admin Dashboard/index.html"; // Update with the correct path
             break;
           case "admin":
             window.location.href = "./Comp/Admin Dashboard/index.html"; // Update with the correct path
