@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Inventory Management</title>
+    <link rel="stylesheet" href="./Components/Styling/inventory.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    
+
+    <!-- Main Content -->
+        <header>
+            <h1>Inventory Management</h1>
+        </header>
+        <nav>
+            <ul class="navbar">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="Complaints-by-Date.html">Complaint Details</a></li>
+                <li><a href="inventory.html"  class="active">Inventory</a></li>
+            </ul>
+        </nav>
+        <div class="main-content">
+    
+    <!-- Inventory Form -->
+    <section class="inventory-form">
+        <h2>Add/Update Inventory Item</h2>
+        <a href="../../index.html" class="logout-btn">Logout</a>
+
+        <form id="inventoryForm">
+            <label for="itemName">Item Name:</label>
+            <input type="text" id="itemName" required>
+
+            <label for="itemStatus">Item Status:</label>
+            <select id="itemStatus">
+                <option value="Available">Available</option>
+                <option value="Under Maintenance">Under Maintenance</option>
+                <option value="In Use">In Use</option>
+            </select>
+
+            <label for="itemQuantity">Quantity:</label>
+            <input type="number" id="itemQuantity" min="1" required>
+
+            <button type="submit" id="saveItem">Save Item</button>
+        </form>
+    </section>
+
+        <!-- Inventory List -->
+        <section class="inventory-list">
+            <h2>Inventory List</h2>
+            <table id="inventoryTable">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Status</th>
+                        <th>Quantity</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be populated dynamically -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="./Components/Scripting/inventory.js"></script>
+</body>
+</html>
