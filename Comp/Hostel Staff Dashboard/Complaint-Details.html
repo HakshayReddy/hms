@@ -45,7 +45,6 @@
 
         <div class="actions">
             <button class="btn resolve-btn"><i class="fa-solid fa-check-circle"></i> Mark as Resolved</button>
-            <button class="btn update-btn"><i class="fa-solid fa-edit"></i> Update Status</button>
         </div>
     </section>
 
@@ -62,41 +61,19 @@
         </div>
     </div>
 
-    <!-- Update Status Popup -->
-    <div id="update-popup" class="popup hidden">
-        <div class="popup-content">
-            <h2><i class="fa-solid fa-edit"></i> Update Complaint Status</h2>
-            <label for="status-select">Select New Status:</label>
-            <select id="status-select">
-                <option value="In-Progress">In Progress</option>
-                <option value="pending">Pending</option>
-            </select>
-            <button id="update-status-btn" class="btn">Update Status</button>
-            <button id="close-update-popup" class="btn">Close</button>
-            <p id="update-message" class="hidden">Status updated successfully!</p>
-        </div>
-    </div>
 
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const resolveButton = document.querySelector('.resolve-btn');
-            const updateButton = document.querySelector('.update-btn');
             const successPopup = document.getElementById('success-popup');
-            const updatePopup = document.getElementById('update-popup');
             const closeSuccessButton = document.getElementById('close-popup');
-            const closeUpdateButton = document.getElementById('close-update-popup');
-            const updateStatusButton = document.getElementById('update-status-btn');
-            const updateMessage = document.getElementById('update-message');
             const complaintStatus = document.getElementById('complaint-status');
             const statusSelect = document.getElementById('status-select');
 
             function updateStatusClass(status) {
                 complaintStatus.classList.remove('status-In-Progress', 'status-pending', 'status-resolved');
                 switch (status) {
-                    case 'In-Progress':
-                        complaintStatus.classList.add('status-In-Progress');
-                        break;
                     case 'pending':
                         complaintStatus.classList.add('status-pending');
                         break;
@@ -115,28 +92,8 @@
             closeSuccessButton.addEventListener('click', function() {
                 successPopup.classList.add('hidden');
             });
-
-            updateButton.addEventListener('click', function() {
-                updatePopup.classList.remove('hidden');
-            });
-
-            closeUpdateButton.addEventListener('click', function() {
-                updatePopup.classList.add('hidden');
-            });
-
-            updateStatusButton.addEventListener('click', function() {
-                const newStatus = statusSelect.value;
-                complaintStatus.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1).replace(/-/g, ' ');
-                updateStatusClass(newStatus);
-                updateMessage.classList.remove('hidden');
-                setTimeout(function() {
-                    updateMessage.classList.add('hidden');
-                    updatePopup.classList.add('hidden');
-                }, 5000); // Hide the popup after 5 seconds
-            });
         });
     </script>
-    <script src="./Components/Scripting/loader.js"></script>
 </body>
 
 </html>

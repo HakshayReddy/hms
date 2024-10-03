@@ -9,25 +9,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="./Components/Styling/styles.css">
-    <link rel="stylesheet" href="./Components/Styling/loader.css">
 </head>
 
 <body>
-
-    <div class="loader-wrapper">
-        <div class="card">
-            <div class="loader">
-                <p>Loading</p>
-                <div class="words">
-                    <span class="word">Complaints</span>
-                    <span class="word">Details</span>
-                    <span class="word">Date And Time</span>
-                    <span class="word">Complete</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Main Content -->
     <header>
         <h1>Complaints List</h1>
@@ -39,24 +23,7 @@
         </ul>
     </nav>
     <section id="complaints-by-date">
-        <div class="section date-selector">
-            <h2><i class="fa-solid fa-calendar-day"></i><span class="shiny-text">Select Date</span></h2>
-            <form id="date-form">
-                <label for="date">Choose a date:</label>
-                <input type="date" id="date" name="date">
-                <button type="button" id="search-date-btn">View Complaints</button>
-                <button type="button" id="reset-date-btn">Reset</button>
-            </form>
-        </div>        
-        <div class="section search-bar">
-            <h2><i class="fa-solid fa-search"></i><span class="shiny-text">Search by ID</span></h2>
-            <div id="search-area">
-                <label for="search-id">Complaint ID:</label>
-                <input type="number" id="search-id" name="search-id" placeholder="Enter Complaint ID" min="0">
-                <button id="search-btn">Search</button>
-                <button id="reset-btn">Reset</button>
-            </div>
-        </div>
+        
         <div class="section complaints-list">
             <h2><i class="fa-solid fa-list"></i><span class="shiny-text">Complaints List</span></h2>
             <table class="complaints-table">
@@ -119,77 +86,13 @@
         </div>
 
         <!-- Pagination Controls -->
-        <div class="pagination">
-            <button id="prev-page">Previous</button>
-            <span>Page <input type="number" id="page-number" value="1" min="1" max="10"> of 10</span>
-            <button id="next-page">Next</button>
-        </div>
+
     </section>
     <footer>
         <p>&copy; 2024 Hostel Management</p>
     </footer>
 
-    <script>
-        document.getElementById('search-btn').addEventListener('click', function() {
-            const complaintId = document.getElementById('search-id').value;
-            if (!complaintId || isNaN(complaintId)) {
-                alert('Please enter a valid complaint ID consisting of digits only.');
-                return;
-            }
-            const rows = document.querySelectorAll('.complaints-table tbody tr');
-            rows.forEach(row => {
-                const idCell = row.querySelector('td:first-child');
-                if (idCell.textContent.trim() === complaintId) {
-                    row.style.display = '';
-                    row.classList.add('highlight');
-                } else {
-                    row.style.display = 'none';
-                    row.classList.remove('highlight');
-                }
-            });
-        });
-
-        document.getElementById('reset-btn').addEventListener('click', function() {
-            document.getElementById('search-id').value = '';
-            const rows = document.querySelectorAll('.complaints-table tbody tr');
-            rows.forEach(row => {
-                row.style.display = '';
-                row.classList.remove('highlight');
-            });
-        });
-
-        document.getElementById('search-date-btn').addEventListener('click', function() {
-            const selectedDate = document.getElementById('date').value;
-            if (!selectedDate) {
-                alert('Please select a date.');
-                return;
-            }
-            const rows = document.querySelectorAll('.complaints-table tbody tr');
-            rows.forEach(row => {
-                const dateCell = row.children[3].textContent.trim();
-                if (dateCell === selectedDate) {
-                    row.style.display = '';
-                    row.classList.add('highlight');
-                } else {
-                    row.style.display = 'none';
-                    row.classList.remove('highlight');
-                }
-            });
-        });
-
-        document.getElementById('reset-date-btn').addEventListener('click', function() {
-            document.getElementById('date').value = '';
-            const rows = document.querySelectorAll('.complaints-table tbody tr');
-            rows.forEach(row => {
-                row.style.display = '';
-                row.classList.remove('highlight');
-            });
-        });
-    </script>
-
     <!-- JavaScript -->
-    <script src="./Components/Scripting/loader.js"></script>
-    <script src="./Components/Scripting/pagination.js"></script>
 </body>
 
 </html>
