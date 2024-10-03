@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
           case "staff":
             window.location.href = "./Comp/Hostel Staff Dashboard/index.html"; // Update with the correct path
             break;
-          case "warden":
+          case "system admin":
             window.location.href = "./Comp/Hostel Staff Dashboard/index.html"; // Update with the correct path
             break;
           case "admin":
