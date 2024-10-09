@@ -7,7 +7,7 @@ body {
 }
 
 header {
-    background-color: #ffae00;
+    background-color: #007bff;
     color: #fff;
     padding: 15px;
     text-align: center;
@@ -38,6 +38,7 @@ header {
 }
 
 .form-group {
+    padding-top: 10px;
     margin-bottom: 1.5rem;
     display: flex;
     /* align-items: center; */
@@ -75,7 +76,7 @@ header {
 
 .edit-icon {
     cursor: pointer;
-    color: #ffae00;
+    color: #007bff;
     font-size: 1.2rem;
     position: absolute;
     left: 48.7rem;
