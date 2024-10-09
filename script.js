@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
           roleDB =  doc.data().role;
         }
       });
-      console.log( (roleDB == role) && (pass == password));
+      // console.log( (roleDB == role) && (pass == password));
     return( (roleDB == role) && (pass == password));
 }
   form.addEventListener("submit", async function (event) {
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
           case "sysadmin":
             window.location.href = "./Comp/System Admin Dashboard/index.html"; // Update with the correct path
             break;
-          case "admin":
+          case "warden":
             window.location.href = "./Comp/Admin Dashboard/index.html"; // Update with the correct path
             break;
           default:
