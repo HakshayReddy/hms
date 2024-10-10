@@ -6,39 +6,39 @@ body {
     align-items: center; /* Center align content */
     height: 100vh;
     margin: 0;
+    overflow: hidden; 
 }
 
 header {
     display: flex; /* Enable flexbox for header */
     align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Space between logo and title */
     width: 100%; /* Full width for header */
     padding: 20px; /* Add padding for spacing */
-    position: relative; /* Make the header position relative */
 }
 
 .logo {
-    width: 300px; /* Adjust size as needed */
+    width: 250px; /* Adjust size as needed */
     height: auto;
     margin-left: 20px; /* Space from the left edge */
-    margin-top: 100px;
-    position: absolute; /* Position logo absolutely */
-    left: 20px; /* Align logo to the left */
 }
 
 h1 {
-    margin-top: 170px;
+    margin-top: 90px;
     text-align: center; /* Center the title */
     font-size: 42px; /* Adjust size as needed */
-    color: #212529; /* Adjust color as needed */
-    margin-bottom: 70px;
+    background: linear-gradient(to right,  #00c6ff,#007bff); /* Adjust gradient colors as needed */
+    -webkit-background-clip: text; /* Clip background to text */
+    -webkit-text-fill-color: transparent; /* Make the text transparent to show the gradient */
+    margin-bottom: 5px; /* Reduce this value to decrease the gap */
 }
 
 .role-container {
     display: flex;
     justify-content: center;
+    margin-top: 50px; /* Center the buttons */
     flex-wrap: wrap; /* Allow buttons to wrap if there's not enough space */
     gap: 35px; /* Space between buttons */
-    align-items: center;
 }
 
 .role-container h1 {

@@ -206,9 +206,16 @@ async function generateReceiptHTML(leaveid) {
 }
 document.addEventListener('click', async function(event) {
     if (event.target && event.target.classList.contains('download')) {
-        console.log('Print');
+        const leaveid = event.target.getAttribute('data-id');
+        const docSnap = await getDoc(docRef); 
+        const docSnapL = await getDoc(doc(db,"leaves",leaveid)); 
+        if(await docSnapL.data().wardenA == "Not-Approved") {
+            alert("This leave request is not approved yet.");
+            return;
+        }
         var receiptIframe = document.getElementById("receiptIframe");
         receiptIframe.contentWindow.document.open();
+        
         receiptIframe.contentWindow.document.write(await generateReceiptHTML(event.target.getAttribute('data-id')));
         receiptIframe.contentWindow.document.close();
         receiptIframe.contentWindow.print();
