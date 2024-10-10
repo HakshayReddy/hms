@@ -88,6 +88,13 @@ loadData();
 document.getElementById('profile-form').onsubmit =async function(event) {
     event.preventDefault(); // Prevent the form from submitting normally
 
+    
+        document.getElementById('popup').classList.add('show'); 
+};
+
+// Handle the confirm button click: Hide the popup and show the success message
+document.getElementById('confirm-btn').onclick = async function() {
+    loadData();
     await addDoc(collection(db, "leaves"), {
         regno: user,
         fromdate:document.getElementById("from-date").value, 
@@ -97,13 +104,11 @@ document.getElementById('profile-form').onsubmit =async function(event) {
         wardenA: "Not-Approved", 
         purpose: document.getElementById("purpose").value,
     });
-
-    document.getElementById('popup').classList.add('show'); // Display the confirmation popup
-};
-
-// Handle the confirm button click: Hide the popup and show the success message
-document.getElementById('confirm-btn').onclick = function() {
-    loadData();
+        document.getElementById("from-date").value = "";
+        document.getElementById("from-time").value = "";
+        document.getElementById("to-date").value = "";
+        document.getElementById("to-time").value = "";
+        document.getElementById("purpose").value = "";
     document.getElementById('popup').classList.remove('show'); // Hide the confirmation popup
     document.getElementById('success-message').classList.add('show'); // Display the success message
     setTimeout(() => {
