@@ -17,9 +17,25 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 document.addEventListener("DOMContentLoaded", function () {
+  const role = window.localStorage.getItem("role");
+  switch (role) {
+    case "student":
+      
+      document.getElementById("heading").innerHTML = "Student Login";
+      break;
+    case "staff":
+      document.getElementById("heading").innerHTML = "Staff Login";
+      break;
+    case "sysadmin":
+      document.getElementById("heading").innerHTML = "Administrator Login";
+      break;
+    case "warden":
+      document.getElementById("heading").innerHTML = "Warden Login";
+      break;
+    default:
+      break;
+  }
   const form = document.getElementById("login-form");
-  const roleSelect = document.getElementById("role");
-  const forgotPassword = document.getElementById("forgot-password");
   const forgotPasswordMessage = document.getElementById("forgot-password-message");
   const roleMessage = document.getElementById("role-message");
   async function verifyCreds(role, userId,password) {
@@ -38,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", async function (event) {
     event.preventDefault(); // Prevent form from submitting normally
 
-    const role = roleSelect.value;
+    const role =  window.localStorage.getItem("role");
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
@@ -72,44 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       // Display an error message if the role, username, or password is not selected
       roleMessage.textContent = "Please select your role, enter your username, and password";
-    }
-  });
-
-  roleSelect.addEventListener("change", function () {
-    const selectedRole = roleSelect.value;
-
-    switch (selectedRole) {
-      case "student":
-        roleMessage.textContent = "Logging in as student";
-        break;
-      case "staff":
-        roleMessage.textContent = "Logging in as staff";
-        break;
-      case "warden":
-        roleMessage.textContent = "Logging in as warden";
-        break;
-      case "admin":
-        roleMessage.textContent = "Logging in as admin";
-        break;
-      default:
-        roleMessage.textContent = "Please select your role";
-    }
-
-    if (selectedRole === "admin") {
-      forgotPassword.classList.add("hidden"); // Hide for admin
-      forgotPasswordMessage.style.display = "none"; // Ensure message is hidden when admin is selected
-    } else {
-      forgotPassword.classList.remove("hidden"); // Show for student, staff, and warden
-    }
-  });
-
-  // Add event listener for "Forgot Password"
-  forgotPassword.addEventListener("click", function () {
-    const selectedRole = roleSelect.value;
-    if (selectedRole !== "admin") {
-      // Show message only if role is not admin
-      forgotPasswordMessage.textContent = "Contact Admin if you forgot your password.";
-      forgotPasswordMessage.style.display = "block";
     }
   });
 });

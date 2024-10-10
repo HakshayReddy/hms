@@ -1,0 +1,84 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e9ecef;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center align content */
+    height: 100vh;
+    margin: 0;
+}
+
+header {
+    display: flex; /* Enable flexbox for header */
+    align-items: center; /* Align items vertically */
+    width: 100%; /* Full width for header */
+    padding: 20px; /* Add padding for spacing */
+    position: relative; /* Make the header position relative */
+}
+
+.logo {
+    width: 300px; /* Adjust size as needed */
+    height: auto;
+    margin-left: 20px; /* Space from the left edge */
+    margin-top: 100px;
+    position: absolute; /* Position logo absolutely */
+    left: 20px; /* Align logo to the left */
+}
+
+h1 {
+    margin-top: 170px;
+    text-align: center; /* Center the title */
+    font-size: 42px; /* Adjust size as needed */
+    color: #212529; /* Adjust color as needed */
+    margin-bottom: 70px;
+}
+
+.role-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow buttons to wrap if there's not enough space */
+    gap: 35px; /* Space between buttons */
+    align-items: center;
+}
+
+.role-container h1 {
+    font-family: 'Arial', sans-serif; /* Change font family */
+    color: #007bff; /* Change font color */
+    font-size: 32px; /* Increase font size */
+    margin-bottom: 20px; /* Space below title */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Optional: Add shadow for depth */
+}
+
+.role-card {
+    display: inline-block;
+}
+
+.role-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    text-decoration: none;
+    background-color: #007bff;
+    color: #ffffff;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.role-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.role-btn i {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.role-btn p {
+    font-size: 18px;
+    font-weight: 600;
+}

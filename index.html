@@ -1,86 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hostel Dashboard Login</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-  </head>
-  <body>
-    <div class="login-container">
-      <div class="form-wrapper">
-        <h2>Hostel Dashboard Login</h2>
-        <form id="login-form" class="form">
-          <div class="flex-column">
-            <label for="role">Select Role</label>
-            <div class="inputForm">
-              <i class="fa-solid fa-user-tie" id="role-icon"></i>
-              <select name="role" id="role" class="input" required>
-                <option value="" disabled selected>Select your role</option>
-                <option value="student" data-icon="fa-solid fa-user-graduate">
-                  Student
-                </option>
-                <option value="staff" data-icon="fa-solid fa-users">
-                  Staff
-                </option>
-                <option value="warden" data-icon="fa-solid fa-person-cane">
-                  Warden
-                </option>
-                <option value="sysadmin" data-icon="fa-solid fa-user-shield">
-                  Admin
-                </option>
-              </select>
-            </div>
-            <p id="role-message" class="role-message">
-              Please select your role
-            </p>
-          </div>
-          <div class="flex-column">
-            <label for="username">Username</label>
-            <div class="inputForm">
-              <i class="fa-solid fa-user"></i>
-              <input
-                type="text"
-                name="username"
-                id="username"
-                class="input"
-                placeholder="Enter your username"
-                required
-              />
-            </div>
-          </div>
-          <div class="flex-column">
-            <label for="password">Password</label>
-            <div class="inputForm">
-              <i class="fa-solid fa-lock"></i>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                class="input"
-                placeholder="Enter your password"
-                required
-              />
-            </div>
-          </div>
-          <button type="submit" id="login-btn" class="button-submit">
-            Login
-          </button>
-          <p id="forgot-password" class="forgot-password">Forgot Password?</p>
-          <p id="forgot-password-message" class="forgot-password-message"></p>
-        </form>
-      </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Role Selection - Admin Dashboard</title>
+    <link rel="stylesheet" href="frontpage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <img src="./vit-logo.png" alt="VIT Logo" class="logo">
+    </header>
+    <h1>Welcome to Hostel Management System</h1>
+    <div class="role-container">
+        <div class="role-card">
+            <a href="#" id = "admin" class="role-btn">
+                <i class="fas fa-building"></i>
+                <p>Warden</p>
+            </a>
+        </div>
+        <div class="role-card">
+            <a href="#" id = "sysadmin" class="role-btn">
+                <i class="fas fa-cogs"></i>
+                <p>System Admin</p>
+            </a>
+        </div>
+        <div class="role-card">
+            <a href="#" id = "staff" class="role-btn">
+                <i class="fas fa-user-tie"></i>
+                <p>Staff</p>
+            </a>
+        </div>
+        <div class="role-card">
+            <a href="#" id = "student" class="role-btn">
+                <i class="fas fa-user-graduate"></i>
+                <p>Student</p>
+            </a>
+        </div>
     </div>
 
-    <div class="hidden" id = "usernameF"></div>
-
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script type = "module" src="script.js"></script>
-  </body>
+  <script>
+    document.getElementById("student").addEventListener("click", function() {
+      window.localStorage.setItem("role","student");
+      window.location.href = "./index1.html";
+    });
+    document.getElementById("staff").addEventListener("click", function() {
+      window.localStorage.setItem("role","staff");
+      window.location.href = "./index1.html";
+    });
+    document.getElementById("sysadmin").addEventListener("click", function() {
+      window.localStorage.setItem("role","sysadmin");
+      window.location.href = "./index1.html";
+    });
+    document.getElementById("admin").addEventListener("click", function() {
+      window.localStorage.setItem("role","warden");
+      window.location.href = "./index1.html";
+    });
+  </script>
+</body>
 </html>
