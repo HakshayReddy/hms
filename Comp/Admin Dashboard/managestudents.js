@@ -99,7 +99,18 @@ function validateContactNumber(contact) {
     const contactPattern = /^\d{10}$/;
     return contactPattern.test(contact);
 }
+function generatePassword() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
+    let password = '';
+    const length = 10; // Length of the password
 
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        password += characters[randomIndex];
+    }
+
+    return password;
+}
 // Function to add a new student to the table
 async function addStudent() {
     const Sname = document.getElementById('studentName').value.trim();
@@ -111,7 +122,7 @@ async function addStudent() {
     const Saddress = document.getElementById('address').value.trim();
     const admissionDate = getTodayDate();
     const studentId = document.getElementById('stid').value.trim();
-    const passw = document.getElementById('password').value.trim();
+    const passw = generatePassword();
 
     // Validate and add new student
     if (Sname && SroomNo && Sbranch && validateContactNumber(Scontact)) {
